@@ -1,0 +1,7 @@
+interface:
+  display_name: "Prompt to Canvas"
+  short_description: "Turn content into polished editable canvases"
+  brand_color: "#3B82F6"
+  default_prompt: "Use $prompt-to-canvas to turn my project notes into a polished editable canvas."
+policy:
+  allow_implicit_invocation: true

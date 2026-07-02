@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Build/cache output
+.vite/
+.vite-temp/
+src/static/
+.DS_Store
+
+# Local-only notes, retrospectives, and working artifacts
+.local/
+docs/superpowers/
+*.tmp
+tmp-*.json

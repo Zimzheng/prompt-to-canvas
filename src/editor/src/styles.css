@@ -1,0 +1,177 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --surface: #ffffff;
+  --border: #e4e4e7;
+  --text: #18181b;
+  --muted: #71717a;
+  --primary: #7c3aed;
+  --primary-hover: #6d28d9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  color: var(--text);
+  background: #f4f4f5;
+}
+
+.editor-shell {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 56px 1fr;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 2;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), #0891b2);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+  white-space: nowrap;
+}
+
+.brand strong {
+  font-size: 14px;
+}
+
+.brand span {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions button {
+  height: 34px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #f4f4f5;
+}
+
+.actions .primary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.actions .primary:hover {
+  background: var(--primary-hover);
+}
+
+.actions .language-toggle {
+  min-width: 38px;
+  padding: 0 10px;
+  color: var(--muted);
+}
+
+.actions .language-toggle:hover {
+  color: var(--text);
+}
+
+.canvas-host {
+  min-height: 0;
+  position: relative;
+}
+
+.loading-state {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.notice {
+  position: fixed;
+  top: 68px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  padding: 10px 14px;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  background: #fffbeb;
+  color: #92400e;
+  font-size: 13px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 20;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: #18181b;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 680px) {
+  .brand span {
+    display: none;
+  }
+
+  .actions button {
+    padding: 0 10px;
+  }
+}
