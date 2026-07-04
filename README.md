@@ -1,12 +1,29 @@
 # Prompt to Canvas
 
+English / Global | [简体中文](README.zh-CN.md)
+
 Agent skill for turning notes, project stories, plans, metrics, and technical
 concepts into polished, editable Excalidraw canvases.
 
-Prompt to Canvas is a design-system skill, not a template filler. The agent
-reads the user's content, chooses a fitting visual style from a 35-style
-catalogue, composes an SVG layout, converts it into editable Excalidraw scene
-JSON, and opens it in a bundled local editor with PNG/SVG export.
+Prompt to Canvas is a local-first design-system skill for AI coding agents. It
+is not a template filler or screenshot generator: the agent reads the user's
+content, decides the visual thesis and hierarchy, chooses a fitting style from a
+35-style catalogue, composes an SVG layout, converts it into editable
+Excalidraw scene JSON, and opens it in a bundled local editor with PNG/SVG
+export.
+
+Use it when you want an agent to turn raw material into a presentation-ready
+visual board that can still be edited afterwards: product stories, technical
+architecture, roadmap plans, portfolio case studies, project reviews, metrics,
+or conceptual maps.
+
+## Why it exists
+
+Most AI image generation is fast but difficult to edit. Most diagramming tools
+are editable but slow to compose by hand. Prompt to Canvas uses SVG as a
+controlled intermediate layer: the agent designs in structured vector shapes,
+then converts the result into native Excalidraw elements so the final board
+remains editable, local, and exportable.
 
 ## Features
 
