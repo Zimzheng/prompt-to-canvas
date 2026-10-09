@@ -28,6 +28,42 @@ This is the repository's **Soft Editorial style example**, showing its palette a
 - **Bundled local editor**: a prebuilt runtime is included, so ordinary installation needs no frontend dependency setup.
 - **Ready to share**: Chinese/English editor UI, browser-local autosave, and PNG/SVG export.
 
+## Relationship to the reference skill
+
+Prompt to Canvas reuses and extends the visual system from [Zara Zhang's beautiful-feishu-whiteboard](https://github.com/zarazhangrui/beautiful-feishu-whiteboard). It retains the style library and SVG composition approach, adapting delivery to **local Excalidraw canvases**. The upstream project supplies the visual design foundation; this project extends conversion, validation, and the local editing experience.
+
+### What is reused
+
+| Reused contribution | Where it appears in this repository |
+| --- | --- |
+| **35 visual styles**: palettes, mood, formality, and design guidance | [Style catalogue](src/skills/prompt-to-canvas/CATALOG.md) and [35 style design files](src/skills/prompt-to-canvas/templates/) |
+| **Style preview assets** | [35 PNG previews](src/skills/prompt-to-canvas/assets/styles/), including the Soft Editorial example shown above |
+| **SVG drawing rules**: native shapes, editable text, connectors, and visual review | [RULES.md](src/skills/prompt-to-canvas/RULES.md) is directly reused from upstream. It still includes Feishu-specific font, CLI, and rendering notes; use the [skill entry point](src/skills/prompt-to-canvas/SKILL.md) and [canvas rules](src/skills/prompt-to-canvas/rules/canvas-rules.md) for the Excalidraw execution workflow |
+| **Interaction and design method**: understand the purpose, confirm the style, select from the catalogue, compose, inspect, and refine | Adapted to the local Excalidraw workflow in [SKILL.md](src/skills/prompt-to-canvas/SKILL.md) |
+
+The 35 styles and their preview assets are upstream contributions. “Innovation” here refers to implementation and workflow extensions this project adds on top of that foundation.
+
+### What this project adds
+
+| Extension or innovation | Implementation and purpose |
+| --- | --- |
+| **SVG → native Excalidraw scene conversion** | [svg-to-scene.mjs](src/skills/prompt-to-canvas/scripts/svg-to-scene.mjs) converts supported SVG shapes, text, and connectors into editable scene elements, handling rotation/scaling, arrows, and CJK/Latin text size estimates |
+| **Excalidraw scene validation** | [validate-scene.mjs](src/skills/prompt-to-canvas/scripts/validate-scene.mjs) checks scene type, required fields, text and connector structures, with optional language/script checks |
+| **Local editing and export experience** | The [React editor](src/editor/src/App.jsx) integrates Excalidraw with Chinese/English UI, browser autosave, and PNG/SVG export; a [prebuilt runtime](src/skills/prompt-to-canvas/assets/editor/) ships with the skill |
+| **Independent editor links for each generation** | [open-editor.mjs](src/skills/prompt-to-canvas/scripts/open-editor.mjs) starts a local HTTP server with an available port and a separate scene URL for each new canvas, reducing accidental reuse of another generation |
+| **Generation constraints for local canvases** | [Canvas rules](src/skills/prompt-to-canvas/rules/canvas-rules.md) add user-language handling, prevention of stale sample content, Excalidraw field requirements, and editable background rectangles |
+
+### Which skill to choose
+
+| Dimension | beautiful-feishu-whiteboard | Prompt to Canvas |
+| --- | --- | --- |
+| Delivery | Editable whiteboard inside a Feishu / Lark document | Editable scene in a local Excalidraw editor |
+| Prerequisites | Node.js 20+, a Feishu account, and authenticated Lark CLI | Node.js 20+, an agent that can run local commands, and a browser |
+| After SVG composition | Build, write, and verify through Feishu whiteboard tools | Convert to Scene JSON, validate, and open the local editor |
+| Best fit | Delivering and sharing whiteboards through Feishu documents | Editing locally and exporting PNG/SVG |
+
+The upstream project is MIT licensed. This repository preserves its [original license and author attribution](src/skills/prompt-to-canvas/LICENSE.beautiful-feishu-whiteboard); see [NOTICE.md](NOTICE.md) for full attribution and dependencies. Excalidraw provides the editing capabilities; this project contributes the conversion and integration workflow.
+
 ## Install
 
 You need **Git, Node.js 20+**, and an agent environment that can read skill files and execute local commands. These commands use a macOS/Linux shell.
