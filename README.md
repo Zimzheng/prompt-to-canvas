@@ -28,6 +28,42 @@
 - **内置本地编辑器**：技能包附带预构建运行时，无需为普通使用安装前端依赖。
 - **方便交付**：编辑器支持中英文界面切换、浏览器本地自动保存和 PNG/SVG 导出。
 
+## 与参考技能的关系
+
+Prompt to Canvas 基于 [Zara Zhang 的 beautiful-feishu-whiteboard](https://github.com/zarazhangrui/beautiful-feishu-whiteboard) 的视觉系统进行复用与扩展：保留其风格库和 SVG 构图思路，将交付端适配为 **本地 Excalidraw 画布**。上游负责建立视觉设计基础，本项目主要扩展转换、校验与本地编辑体验。
+
+### 复用了哪些部分
+
+| 复用部分 | 本仓库中的对应内容 |
+| --- | --- |
+| **35 种视觉风格**：配色、气质、正式程度和设计指引 | [风格目录](src/skills/prompt-to-canvas/CATALOG.md)、[35 份风格设计文件](src/skills/prompt-to-canvas/templates/) |
+| **风格预览素材** | [35 张 PNG 预览图](src/skills/prompt-to-canvas/assets/styles/)；README 上方的 Soft Editorial 示例也来自上游 |
+| **SVG 绘图规则**：原生形状、可编辑文字、连接线与视觉检查 | [RULES.md](src/skills/prompt-to-canvas/RULES.md)直接复用上游规则；其中仍保留飞书字体、CLI 和渲染行为等平台专属说明，Excalidraw 执行流程请看[技能入口](src/skills/prompt-to-canvas/SKILL.md)与[画布规则](src/skills/prompt-to-canvas/rules/canvas-rules.md) |
+| **交互与设计方法**：先理解用途，再确认风格，从目录选风格后构图、检查和修正 | 在 [SKILL.md](src/skills/prompt-to-canvas/SKILL.md)中适配为本地 Excalidraw 工作流 |
+
+35 种风格及其预览素材属于上游贡献。这里将“创新”限定为本项目在该基础上增加的实现与工作流扩展。
+
+### 本项目增加了哪些部分
+
+| 扩展与创新 | 实现与用途 |
+| --- | --- |
+| **SVG → Excalidraw 原生场景转换** | [svg-to-scene.mjs](src/skills/prompt-to-canvas/scripts/svg-to-scene.mjs)将支持的 SVG 形状、文字及连接线转换为场景元素，处理旋转/缩放、箭头和中英文文字尺寸估算，使结果可以继续编辑 |
+| **Excalidraw 场景校验** | [validate-scene.mjs](src/skills/prompt-to-canvas/scripts/validate-scene.mjs)检查场景类型、必要字段、文字与连接线结构，并提供可选的语言/文字系统检查 |
+| **本地编辑与导出体验** | [React 编辑器](src/editor/src/App.jsx)集成 Excalidraw，增加中英文界面、浏览器自动保存及 PNG/SVG 导出；[预构建运行时](src/skills/prompt-to-canvas/assets/editor/)随技能分发 |
+| **每次生成独立的编辑器链接** | [open-editor.mjs](src/skills/prompt-to-canvas/scripts/open-editor.mjs)启动本地 HTTP 服务，为新画布分配可用端口与独立场景 URL，减少不同生成结果之间的串用 |
+| **面向本地画布的生成约束** | [画布规则](src/skills/prompt-to-canvas/rules/canvas-rules.md)补充用户语言遵循、禁止旧示例混入、Excalidraw 字段规范和可编辑背景矩形等要求 |
+
+### 两个技能如何选择
+
+| 维度 | beautiful-feishu-whiteboard | Prompt to Canvas |
+| --- | --- | --- |
+| 最终交付 | 飞书 / Lark 文档内的可编辑白板 | 本地 Excalidraw 编辑器中的可编辑场景 |
+| 运行条件 | Node.js 20+、飞书账号及已认证的 Lark CLI | Node.js 20+、能执行本地命令的 Agent 与浏览器 |
+| SVG 后续流程 | 通过飞书白板工具构建、写入并验证 | 转换 Scene JSON、校验后打开本地编辑器 |
+| 更适合 | 围绕飞书文档交付和分享白板 | 在本地调整画布并导出 PNG/SVG |
+
+上游使用 MIT 许可证。本仓库保留了[上游许可证原文](src/skills/prompt-to-canvas/LICENSE.beautiful-feishu-whiteboard)及作者署名；完整来源与依赖说明见 [NOTICE.md](NOTICE.md)。Excalidraw 编辑能力由 Excalidraw 提供，本项目贡献的是转换和集成工作流。
+
 ## 安装
 
 需要 **Git、Node.js 20+**，以及能读取技能文件、执行本地命令的 Agent 环境。以下命令适用于 macOS/Linux shell。
