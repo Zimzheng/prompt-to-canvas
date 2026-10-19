@@ -1,18 +1,18 @@
 # Style Catalogue
 
-Use this to pick a style for the user, based on the **level** (how restrained or bold it feels),
-the **formality**, and the **vibe** they want. Any style can carry almost any content, so choose by
-feel. If the user named a style or a clear preference, honour it. Otherwise infer from the tone they
-want and propose one. After generating, always tell the user they can switch to any other style.
+Use this table with [the style-selection rule](rules/style-selection.md) and
+[comparison profiles](STYLE_PROFILES.md). No style or level is the default. First resolve whether
+user choice is needed from the current request and established preferences. Filter by real task
+constraints, then compare visual differences; a professional audience can suit several directions.
 
-Each row lists its **palette signature** (canvas + the defining accents, as hex) so you can choose
-from this table **alone**. Once you pick a style, open **only that one** `templates/<slug>/design.md`
-for the full colour notes — do not open several templates to compare.
+This table supplies palette, vibe, and formality; the profiles add source-linked density, hierarchy,
+geometry, depth, and rhythm. After selection, read the chosen `templates/<slug>/design.md` for exact
+rules. Previews illustrate visual language, not required layouts. Do not load all design files.
 
 The 35 styles are grouped into three levels, from restrained to bold:
 
 - **Restrained** — monochrome, two-tone, calm and muted; not colourful. For serious, quiet, editorial boards.
-- **Balanced** — a confident accent or two on a clean ground; the versatile middle. Most general work lives here.
+- **Balanced** — a confident accent or two on a clean ground; moderate visual intensity.
 - **Bold** — loud, maximalist, lots of bright colour. For playful, high-energy, attention-grabbing boards.
 
 **Formality key:** **Low** = playful / casual, **Medium** = confident / modern, **High** =
@@ -70,14 +70,15 @@ restrained / refined / institutional.
 
 ## How to choose
 
-1. **Level first.** How loud should the board feel? Quiet / serious leans **Restrained**; playful or
-   high-energy leans **Bold**; most general work sits comfortably in **Balanced**.
-2. **Formality second.** Within the level, match how formal it should read (Low / Medium / High).
-3. **Vibe third.** Narrow by the user's mood or colour preference (the Vibe + Palette columns).
-4. **When unsure, default to a safe or balanced style.**
-5. Ignore the Excalidraw infinite canvas background when choosing a style. It is a medium-level
-   editor setting, not a style-selection signal; choose by content, audience, formality, and vibe.
-6. **Commit from this table, then open exactly one `design.md`** — the one for the style you picked.
-   The palette signature here is enough to choose; don't open several templates to compare.
-7. Always offer to switch afterwards. Swapping style means re rendering the same content in a
-   different template's palette.
+1. **Filter by the brief.** Match real constraints, audience, mood, formality, and colour preferences;
+   do not assign a level solely from the subject or default to Balanced when uncertain.
+2. **Compare across the full table and [profiles](STYLE_PROFILES.md).** Shortlist suitable styles with visibly different visual
+   characters, following [the style-selection rule](rules/style-selection.md).
+3. **Resolve the choice.** Use the interaction routes in the style-selection rule; avoid asking again within an established scope. For delegated
+   choices, use fit and available history to avoid repeating an equally suitable visual family.
+4. Ignore the Excalidraw infinite canvas background when choosing a style. It is an editor setting;
+   template paper/background colour remains part of the artifact as an editable rectangle.
+5. Read the selected `design.md` for each output after selection. The table supplies the shortlist;
+   do not load all 35 design files. Previews can help the user compare the candidates.
+6. Offer to switch afterwards. A new style changes composition grammar, hierarchy, density, shape
+   treatment, and palette according to its design rules, while preserving the content.

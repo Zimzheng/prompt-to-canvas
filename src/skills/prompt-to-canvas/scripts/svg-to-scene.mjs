@@ -288,7 +288,10 @@ function textElement(attributeMap, inner, elements, matrix) {
 let seed = 1000;
 function baseElement(type, id, x, y, width, height, attributeMap = {}) {
   seed += 1;
-  const stroke = color(attributeMap.stroke, "#1A1A16");
+  // SVG has no stroke unless explicitly painted. Preserve borderless style surfaces,
+  // including paper backgrounds; Excalidraw's default dark stroke would invent a frame.
+  const rawStrokeWidth = num(attributeMap["stroke-width"], type === "text" ? 1 : 2);
+  const stroke = type !== "text" && rawStrokeWidth <= 0 ? "transparent" : color(attributeMap.stroke, "transparent");
   const fill = color(attributeMap.fill, "transparent");
   return {
     id,
@@ -301,7 +304,7 @@ function baseElement(type, id, x, y, width, height, attributeMap = {}) {
     strokeColor: stroke,
     backgroundColor: fill,
     fillStyle: "solid",
-    strokeWidth: Math.max(1, num(attributeMap["stroke-width"], type === "text" ? 1 : 2)),
+    strokeWidth: Math.max(1, rawStrokeWidth),
     strokeStyle: "solid",
     roughness: 0,
     opacity: 100,

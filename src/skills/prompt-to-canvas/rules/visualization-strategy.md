@@ -4,19 +4,26 @@ Prompt to Canvas must use the bundled style system as the design source of truth
 SVG-first design, then convert that SVG into editable Excalidraw elements. Do not design directly in
 Excalidraw unless the user explicitly asks to bypass style fidelity.
 
+## Selection and diversity
+
+Resolve the visual direction using [style-selection.md](style-selection.md) before composing.
+Do not treat the README example, familiar palettes, or the previous canvas as a default. Preserve
+an explicitly chosen style or series; for independent delegated outputs, consider a different,
+equally suitable visual family. A style change must affect the visual grammar beyond colour.
+
 ## Design Priority
 
-1. The chosen `templates/<slug>/design.md` controls palette, mood, density, geometry, stroke,
-   corners, depth, and accent discipline.
-2. `diagram.svg` is the design source of truth and should satisfy `RULES.md` before
+1. Medium limits and editability are mandatory; `diagram.svg` must satisfy `RULES.md` before
    conversion.
-3. `assets/styles/<slug>.png` is the visual target. Match its composition grammar as closely as
-   native SVG/Excalidraw primitives allow.
-4. The content model controls what the board says and how information is grouped, but it should be
-   compact and artifact-first. Its job is to create better labels, hierarchy, grouping, and
-   connectors, not to add generic analysis sections.
-5. Generic dashboard/card patterns are a fallback only when the chosen style explicitly supports
-   them.
+2. The user's content and intended use determine narrative structure, topology, grouping, and
+   label load. Preserve causal links, ordering, boundaries, and comparison criteria.
+3. The selected `templates/<slug>/design.md` controls palette, geometry, stroke, corners, depth,
+   hierarchy, and visual rhythm within those content relationships. If its defining traits cannot
+   support the content, revisit selection rather than erasing relationships or shrinking text.
+4. `assets/styles/<slug>.png` illustrates visual language. Do not inherit its example labels,
+   three-stage/column structure, node count, or aspect ratio. Same-content previews make styles
+   comparable; they are not page templates. Follow explicit user requests to reproduce a layout.
+5. Generic dashboard/card patterns are a fallback only when content and selected style support them.
 
 Never override a selected style with old defaults such as blue SaaS cards, soft drop shadows,
 12px rounded panels, gradient data cards, or generic portfolio sections.
@@ -63,7 +70,9 @@ Before drawing, extract from the selected `design.md`:
 - typography behavior: large display words, quiet body labels, labels on blocks, etc.
 - forbidden moves: no shadows, no borders, no small text on saturated fills, no overuse of accents
 
-The finished canvas should visibly resemble the selected preview even with different content.
+The selected visual language should be recognizable through palette, geometry, hierarchy, and
+rhythm, while its layout expresses the current content rather than the preview example. Missing
+profile/design details are not permission to invent a signature constraint.
 
 ## Layout Choice
 
@@ -99,7 +108,8 @@ content; if it is impossible, explain briefly and choose the nearest structure.
 
 ## Excalidraw Craft
 
-- Use a logical canvas around 1600 x 900 unless the selected style needs a taller poster.
+- Use a logical width around 1600–1700; let content determine height. Do not copy the preview
+  aspect ratio or force every output into 16:9.
 - Align edges deliberately. Use repeated x/y coordinates and consistent gaps.
 - Use fewer, stronger shapes. A well-composed board beats many small cards.
 - Keep all text editable and manually wrapped.

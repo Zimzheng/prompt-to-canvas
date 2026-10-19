@@ -9,6 +9,7 @@
     "build": "vite build --config vite.config.mjs",
     "build:skill": "npm run build && rsync -a --delete src/static/ src/skills/prompt-to-canvas/assets/editor/",
     "preflight": "src/skills/prompt-to-canvas/scripts/preflight.sh",
+    "test:style": "node --test scripts/test-svg-style-fidelity.mjs",
     "preview": "vite preview --host 127.0.0.1 --outDir src/static"
   },
   "dependencies": {

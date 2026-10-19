@@ -1,6 +1,7 @@
 ---
 name: prompt-to-canvas
-version: 1.1.0
+metadata:
+  version: "1.1.0"
 description: >
   A library of 35 curated visual styles plus an SVG-to-Excalidraw workflow for building polished,
   editable canvases from user-provided content. Use whenever the user wants to turn notes, metrics,
@@ -51,14 +52,16 @@ If anything is missing, tell the user what is missing and stop.
      question.
    - Offer 2-3 inferred options, put the recommended option first, and include an "agent picks"
      option in the user's language when the prompt already has enough context.
-2. **Ask about the vibe.** Ask for the visual style: quiet, professional, playful, bold, brand-like,
-   colour preference, or mood. Offer to pick if the user has no preference. Skip this if the user
-   already named a style or clear vibe.
-   - Use selectable options when the host supports them.
-   - Map options to the catalogue levels: Restrained, Balanced, or Bold.
-3. **Pick a style.** Use [`CATALOG.md`](CATALOG.md) to choose one style. Choose from the catalogue
-   table alone; do not compare multiple `design.md` files. Tell the user the chosen style and why in
-   one line.
+2. **Resolve the visual direction.** Follow [`rules/style-selection.md`](rules/style-selection.md).
+   For a first canvas without a specific direction, show 2–3 suitable, visibly distinct catalogue
+   candidates and an “agent chooses” option; wait for the submitted choice. Honour specific styles,
+   references, brands, and series continuity. With delegated choice, a scoped standing preference,
+   a no-questions request, or a noninteractive run, proceed directly without repeating the question.
+   A broad mood filters candidates; accepting one canvas alone does not establish a default.
+3. **Commit to a style.** Compare [`CATALOG.md`](CATALOG.md) and
+   [`STYLE_PROFILES.md`](STYLE_PROFILES.md) for fit before visual diversity. Announce the selected
+   style and one concrete reason. Read the selected `templates/<slug>/design.md` for each output.
+   Treat previews as visual-language references; the user's content determines layout and topology.
 4. **Build it.** Read [`RULES.md`](RULES.md), [`rules/canvas-rules.md`](rules/canvas-rules.md),
    [`rules/visualization-strategy.md`](rules/visualization-strategy.md), and only the selected
    `templates/<slug>/design.md`, then:
@@ -120,9 +123,13 @@ node scripts/open-editor.mjs --scene scene.json
 ## Files
 
 - [`CATALOG.md`](CATALOG.md): 35 styles with vibe, formality, and palette signature.
+- [`STYLE_PROFILES.md`](STYLE_PROFILES.md): source-linked visual dimensions for comparing fit and
+  similarity without loading every full design file.
 - [`RULES.md`](RULES.md): SVG medium rules shared by the style system.
 - [`templates/<slug>/design.md`](templates/): one palette and mood guide per style.
 - [`assets/styles/`](assets/styles/): style preview images.
+- [`rules/style-selection.md`](rules/style-selection.md): user choice, diverse shortlists, and
+  automatic selection without a fixed default.
 - [`rules/analysis-prompt.md`](rules/analysis-prompt.md): private content-shaping checklist.
 - [`rules/canvas-rules.md`](rules/canvas-rules.md): Excalidraw scene and verification rules.
 - [`rules/visualization-strategy.md`](rules/visualization-strategy.md): layout and style-fidelity

@@ -1,7 +1,7 @@
 # Excalidraw Canvas Rules
 
 These rules prevent stale test content and keep Prompt to Canvas outputs editable and polished. The
-style controls palette and mood only; the agent controls the composition.
+style controls visual language; the user’s content and relationships determine the composition.
 
 ## Hard Rules
 
@@ -106,8 +106,9 @@ Minimal text element:
 
 ## Style Fidelity
 
-The style files are not just palettes. They describe composition logic. Root
-`templates/<slug>/design.md` and `assets/styles/<slug>.png` are the source of truth.
+Root `templates/<slug>/design.md` defines visual language; the preview illustrates it. Content
+relationships determine layout. Do not copy the preview’s sample labels, columns, stage count, or
+aspect ratio. If a design cannot accommodate the content, revisit style selection.
 
 - If a style says strict grid, tile the board into a strong grid with aligned panel edges.
 - If a style says flat/no shadows, do not use shadows or floating-card composition.
@@ -119,8 +120,8 @@ The style files are not just palettes. They describe composition logic. Root
   many equal cards.
 - If a style is editorial/quiet, use restrained accents, generous margins, and strong text hierarchy.
 - If a style is brutalist/grid-like, use hard edges, visible rules, grid alignment, and high contrast.
-- If the preview depends on overlap, rotation, hard offsets, or sparse composition, reproduce that
-  behavior with editable Excalidraw primitives.
+- Use overlap, rotation, hard offsets, or sparse rhythm when the selected design supports them and
+  the content stays legible. Do not reproduce the preview’s information arrangement by default.
 - Translate SVG design ideas into editable Excalidraw primitives. Every label remains a text
   element.
 
@@ -141,9 +142,11 @@ Before delivering, inspect the opened editor or rendered export and confirm:
 - No text is half-clipped on the left/right/top/bottom before double-click editing.
 - Elements do not overlap incoherently.
 - Important content is not clipped at the viewport edge.
-- The layout type matches the content type.
+- The layout type matches the content type; directed edges actually reach the intended nodes,
+  including feedback paths. Arrow count alone does not establish correct relationships.
 - The style palette is visible but does not overpower readability.
-- The selected style is recognizable from its preview, not merely from matching colors.
+- The style is recognizable in shape treatment, hierarchy, and rhythm as well as palette; its
+  structure expresses the real content rather than the preview example.
 - The source SVG was composed with the bundled SVG rules before conversion.
 - The content reads like a domain expert artifact: precise labels, real relationships, clear thesis,
   and no generic filler sections.

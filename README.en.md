@@ -114,6 +114,8 @@ Highlight each phase's goal and deliverable.
 
 This is a fictional example. Replace it with your notes, architecture description, or project review.
 
+For a first canvas without a specific direction, the agent offers 2–3 suitable, visibly distinct candidates and an agent-picks option. Say “Choose the style for me and generate directly” to delegate. Scoped delegation, a current series, or an explicitly established default avoids repeated questions; accepting one canvas alone does not set a default. Broad moods filter the pool. Candidates also compare [structured visual profiles](src/skills/prompt-to-canvas/STYLE_PROFILES.md); previews guide visual language while the actual content determines layout. Brand and series continuity take priority.
+
 The agent confirms purpose and style, builds SVG, converts and validates the scene, and provides a local editor link. Open it, edit the text and shapes, and use the **PNG / SVG** buttons to export.
 
 ```text

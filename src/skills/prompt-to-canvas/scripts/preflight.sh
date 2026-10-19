@@ -24,6 +24,8 @@ NODE_MAJOR=$(node -p "Number(process.versions.node.split('.')[0])")
 
 need_file "SKILL.md"
 need_file "CATALOG.md"
+need_file "STYLE_PROFILES.md"
+need_file "rules/style-selection.md"
 need_file "RULES.md"
 need_file "scripts/svg-to-scene.mjs"
 need_file "scripts/validate-scene.mjs"
