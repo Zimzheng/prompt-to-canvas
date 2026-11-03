@@ -9,13 +9,18 @@ A skill package for AI coding agents such as Codex and Claude Code. The agent or
 [Install](#install) · [Browse styles](src/skills/prompt-to-canvas/CATALOG.md) · [Read the workflow](src/skills/prompt-to-canvas/SKILL.md)
 
 
-See [two actual v1.2.0 outputs](docs/EXAMPLES.md), including PNG exports, SVG sources and editable scenes.
+## Actual outputs
 
-## Visual preview
+These conceptual examples were generated with v1.2.0 without a specified style. Images are actual
+editor exports, not customer deployments. The canvas text is Chinese; click either preview for
+context, SVG sources and editable Excalidraw scenes.
 
-[![Soft Editorial style preview: a three-column explanation of LLM training](src/skills/prompt-to-canvas/assets/styles/soft-editorial.png)](src/skills/prompt-to-canvas/templates/soft-editorial/design.md)
+[![AI editorial workflow with responsibility lanes, decisions and revision loops](docs/examples/case-1-editorial-workflow.png)](docs/EXAMPLES.md#ai-内容发布协作--ai-editorial-workflow)
 
-This is the repository's **Soft Editorial style example**, showing its palette and information hierarchy, rather than an editor screenshot. Click it to read the style rules. The [full catalogue](src/skills/prompt-to-canvas/CATALOG.md) covers 35 styles across restrained, balanced, and bold visual directions.
+[![Research agents with a central coordinator, specialists and shared capabilities](docs/examples/case-2-agent-network.png)](docs/EXAMPLES.md#研究型-agent-协作网络--research-agent-collaboration)
+
+Explore [35 visual references](src/skills/prompt-to-canvas/CATALOG.md) or use a coherent custom direction.
+References guide visual treatment, not fixed layouts.
 
 ## What you can make
 
@@ -30,6 +35,17 @@ This is the repository's **Soft Editorial style example**, showing its palette a
 - **Content-driven composition**: styles supply visual rules; the agent decides the narrative, grouping, hierarchy, and connections.
 - **Bundled local editor**: a prebuilt runtime is included, so ordinary installation needs no frontend dependency setup.
 - **Ready to share**: Chinese/English editor UI, browser-local autosave, and PNG/SVG export.
+
+## What changed in v1.2.0
+
+- **Autonomous selection:** no fixed default style or mandatory template question; brand and series constraints take priority.
+- **Flexible composition:** combine lanes, branches, joins, nested boundaries and feedback without fixed columns, node counts or aspect ratios.
+- **Linked editing:** groups, container labels and arrow endpoint bindings preserve editing relationships.
+- **Explicit conversion:** diamonds, sampled curves, inherited styles and dashes; unsupported visible features produce errors.
+
+The converter implements a defined SVG subset. Curves use editable sampled points and text bounds are estimates.
+There is no automatic layout, obstacle avoidance or built-in PDF export. Inspect real rendering for text and
+complex routing. See [capabilities and limits](src/skills/prompt-to-canvas/RULES.md).
 
 ## Relationship to the reference skill
 
@@ -102,7 +118,7 @@ The repository also provides `bash scripts/deploy.sh`, targeting Codex by defaul
 
 ## First canvas
 
-Tell the agent your content, purpose, and preferred style:
+Give the agent your content and purpose; style preferences are optional:
 
 ```text
 Use prompt-to-canvas to turn this fictional project plan into an editable roadmap.
@@ -119,7 +135,7 @@ This is a fictional example. Replace it with your notes, architecture descriptio
 
 Without a specified style, the agent chooses autonomously from the reading task, label load and relationship complexity. There is no fixed default style or mandatory template question. Use a catalogue reference or a coherent custom direction; brand and series continuity take priority. Compose topology before visual treatment, combining lanes, branches, joins, nested boundaries, feedback and detail views as useful. Previews do not prescribe layout, node count or aspect ratio. Request candidate previews or multiple variants explicitly when needed.
 
-The agent confirms purpose and style, builds SVG, converts and validates the scene, and provides a local editor link. Open it, edit the text and shapes, and use the **PNG / SVG** buttons to export.
+The agent infers the purpose, composes the relationships, chooses a visual direction, builds SVG, converts and validates the scene, and provides a local editor link. It asks only when missing information materially affects correctness. Open it, edit the text and shapes, and use the **PNG / SVG** buttons to export.
 
 ```text
 Content and purpose → Information structure and style → SVG composition
@@ -135,6 +151,15 @@ The editor runs through a local HTTP server and autosaves the current scene in b
 The local editor and the agent service are separate parts of the workflow. Content you send to the agent remains subject to your model provider's and runtime's data policies. Multiplayer collaboration is not integrated; PNG and SVG are the implemented export formats.
 
 ## Development and validation
+
+Rule/converter checks need Node on PATH, without frontend dependency installation:
+
+```bash
+npm test
+npm run preflight
+```
+
+The current suite has 20 regression checks. They verify conversion behavior, not visual quality or diversity across every generation.
 
 Ordinary installation uses the bundled editor. Install npm dependencies when changing the editor source:
 

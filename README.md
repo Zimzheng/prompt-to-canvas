@@ -9,13 +9,16 @@
 [开始安装](#安装) · [查看风格目录](src/skills/prompt-to-canvas/CATALOG.md) · [阅读技能工作流](src/skills/prompt-to-canvas/SKILL.md)
 
 
-实际生成效果：[两个 v1.2.0 示例](docs/EXAMPLES.md)，包含 PNG、SVG 源文件与可编辑场景。
+## 实际生成效果
 
-## 看看视觉风格
+以下是 v1.2.0 在未指定风格时生成的两个概念示例，图片来自实际编辑器导出；并非真实客户部署。
+点击预览可查看场景说明，下载 SVG 源文件与可编辑 Excalidraw 场景。
 
-[![Soft Editorial 风格预览：以三栏结构解释 LLM 训练流程](src/skills/prompt-to-canvas/assets/styles/soft-editorial.png)](src/skills/prompt-to-canvas/templates/soft-editorial/design.md)
+[![AI 内容发布协作：泳道、条件分支与修订回路](docs/examples/case-1-editorial-workflow.png)](docs/EXAMPLES.md#ai-内容发布协作--ai-editorial-workflow)
 
-上图是仓库自带的 **Soft Editorial 风格示例**，用于展示配色和信息层级，并非编辑器截图。点击图片查看该风格的设计规则；[完整目录](src/skills/prompt-to-canvas/CATALOG.md)包含 35 种风格，覆盖克制、平衡和大胆三类表达。
+[![研究型 Agent：中心编排、专业角色与共享能力](docs/examples/case-2-agent-network.png)](docs/EXAMPLES.md#研究型-agent-协作网络--research-agent-collaboration)
+
+需要更多视觉方向？查看 [35 种风格参考](src/skills/prompt-to-canvas/CATALOG.md)。预览提供视觉语言，不限定构图；也支持协调的自定义风格。
 
 ## 适合做什么
 
@@ -30,6 +33,15 @@
 - **按内容构图**：风格提供配色与设计规则，Agent 决定叙事、分组、层级和连接关系。
 - **内置本地编辑器**：技能包附带预构建运行时，无需为普通使用安装前端依赖。
 - **方便交付**：编辑器支持中英文界面切换、浏览器本地自动保存和 PNG/SVG 导出。
+
+## v1.2.0 的变化与边界
+
+- **自主选型**：没有固定默认风格，不强制先选模板；品牌和系列要求优先。
+- **灵活构图**：组合泳道、分支汇合、嵌套边界和反馈，不强制三栏、节点数或画布比例。
+- **关联编辑**：支持分组、绑定标签与箭头端点，移动节点时保持关联。
+- **可靠转换**：新增菱形、采样曲线、样式继承和虚线；不支持的可见特性明确报错。
+
+转换器只支持明确的 SVG 子集。曲线是可编辑采样点，文字尺寸仍是估算；没有自动布局、自动避障或内置 PDF 导出。复杂路线和文字需要实际渲染检查。详见[能力与限制](src/skills/prompt-to-canvas/RULES.md)。
 
 ## 与参考技能的关系
 
@@ -102,7 +114,7 @@ sh ~/.claude/skills/prompt-to-canvas/scripts/preflight.sh
 
 ## 第一次使用
 
-把内容、用途和希望的风格一起告诉 Agent：
+告诉 Agent 内容和用途即可；风格可选：
 
 ```text
 使用 prompt-to-canvas，把下面的虚构项目计划做成可编辑的路线图。
@@ -119,7 +131,7 @@ sh ~/.claude/skills/prompt-to-canvas/scripts/preflight.sh
 
 未指定风格时，Agent 会结合阅读任务、关系复杂度和信息密度自主选择，直接生成；没有固定默认风格，也无需先选模板。可使用 35 种视觉参考或协调的自定义方向。品牌与系列一致性优先；独立作品在同样适合时考虑不同视觉表现。先设计关系与空间结构，再应用视觉语言，支持泳道、分支汇合、嵌套边界、反馈和局部展开的组合。预览不限定布局、节点数或画布比例。需要候选预览或多个方案时可明确提出。
 
-Agent 会确认用途与风格，生成 SVG、转换并校验场景，再提供本地编辑器链接。打开链接后，调整文字与形状，使用顶部 **PNG / SVG** 按钮导出。
+Agent 会理解用途，按内容设计构图并选择视觉方向，生成 SVG、转换并校验场景，再提供本地编辑器链接；只有影响正确性的关键信息缺失时才追问。打开链接后，调整文字与形状，使用顶部 **PNG / SVG** 按钮导出。
 
 ```text
 内容与用途 → 信息组织与风格选择 → SVG 构图
@@ -135,6 +147,15 @@ Agent 会确认用途与风格，生成 SVG、转换并校验场景，再提供�
 本地编辑器与 Agent 服务是两个环节：交给 Agent 的内容仍受你所用模型服务和运行环境的数据策略约束。当前技能未集成多人协作；PNG/SVG 是已实现的导出格式。
 
 ## 开发与验证
+
+仅检查技能规则与转换器时，无需安装前端依赖；Node 在 PATH 中即可运行：
+
+```bash
+npm test
+npm run preflight
+```
+
+当前回归套件包含 20 项检查；它验证转换行为，不证明所有生成结果的视觉质量或风格多样性。
 
 普通安装使用仓库内置编辑器。只有修改编辑器源码时，才需要安装 npm 依赖：
 
