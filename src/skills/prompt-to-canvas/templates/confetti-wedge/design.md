@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Confetti Wedge
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A bright, playful brand-deck system: a cool near-white page, content-first, with a few small flat
   pastel confetti accents (candy pink, mint green, aqua teal) tucked into the margins, and a heavy
@@ -33,7 +33,7 @@ stroke:
   radius: 24 # cards are softly rounded; small accents may be sharp wedges or dots
 ---
 
-# Confetti Wedge — Feishu SVG Whiteboard Design System
+# Confetti Wedge — Editable Canvas Design System
 
 A festive but tidy title-deck look: a cool near-white page with one heavy black rounded headline
 doing the talking, the content (cards, rows) front and centre, and just a few small pastel confetti
@@ -42,4 +42,8 @@ big weight jump, not from oversized blocks.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

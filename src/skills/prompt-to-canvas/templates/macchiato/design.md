@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Macchiato
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A warm monochrome palette with no accent color: a soft milky-almond page and a warm espresso
   near-black for everything, plus two warm taupe greys for quieter copy. Cozy, creamy, and
@@ -24,7 +24,7 @@ stroke:
   radius: "low to soft (rx 0 to 14); quiet and warm, neither sharp nor bubbly"
 ---
 
-# Macchiato — Feishu SVG Whiteboard Design System
+# Macchiato — Editable Canvas Design System
 
 One warm almond surface, one espresso ink, two taupe greys. No accent. The restraint is the point:
 build the board so hierarchy comes from size, weight, and space, and let the milky almond and the warm
@@ -32,4 +32,8 @@ espresso ink do all the work. Reach for this when the content should feel cozy, 
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

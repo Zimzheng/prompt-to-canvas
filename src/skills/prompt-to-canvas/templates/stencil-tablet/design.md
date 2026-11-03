@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Stencil & Tablet
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A West Coast skate-poster meets municipal-stencil palette. A warm bone-cream field carries rounded
   "tablet" cards in a saturated retro-print accent set (sienna, magenta, orange, teal, blue, mustard,
@@ -31,7 +31,7 @@ stroke:
   radius: "high rounded (rx 22 to 26): the cards are soft 'tablets'."
 ---
 
-# Stencil & Tablet — Feishu SVG Whiteboard Design System
+# Stencil & Tablet — Editable Canvas Design System
 
 A bone-cream poster wall tiled with rounded color tablets in a saturated retro-print accent set. The
 color blocks do the layout, so build the board as geometric tiles you could read from across the
@@ -39,4 +39,8 @@ room. Keep type bold and large, and let two to four accents share a scene.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

@@ -1,9 +1,9 @@
 ---
 version: 1.0
 name: Specimen Bold
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
-  A type-specimen poster system for Feishu SVG whiteboards. Near-white paper canvas, three loud flat color-blocks (grass green, acid yellow, sky blue) used as "labels", each holding ONE heavy charcoal word at display scale. No borders by default — the saturated block IS the frame; depth comes from solid color and a few rotated blocks, never shadows. Big-word-on-a-block is the whole grammar. Built for punchy single-frame statements: category showcases, vocabulary/term maps, stage callouts, comparisons, and bold hero diagrams.
+  A type-specimen poster system for editable canvases. Near-white paper canvas, three loud flat color-blocks (grass green, acid yellow, sky blue) used as "labels", each holding ONE heavy charcoal word at display scale. No borders by default — the saturated block IS the frame; depth comes from solid color and a few rotated blocks, never shadows. Big-word-on-a-block is the whole grammar. Built for punchy single-frame statements: category showcases, vocabulary/term maps, stage callouts, comparisons, and bold hero diagrams.
 
 # ── COLOR ────────────────────────────────────────────────────
 colors:
@@ -29,7 +29,7 @@ stroke:
   radius: 0 # squared rects; ellipse is the one curved primitive
 ---
 
-# Specimen Bold — Feishu SVG Whiteboard Design System
+# Specimen Bold — Editable Canvas Design System
 
 A design system for building **bold single-frame statements** as editable Feishu whiteboards
 written in SVG. The aesthetic is a print **type-specimen poster**: a bright paper field, three
@@ -39,4 +39,8 @@ and stays fully editable.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

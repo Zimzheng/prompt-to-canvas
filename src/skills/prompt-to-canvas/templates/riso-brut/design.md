@@ -1,9 +1,9 @@
 ---
 version: 1.0
 name: Riso Brut
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
-  A neo-brutalist editorial design system for Feishu SVG whiteboards. Warm cream canvas, heavy 4px ink borders, hard solid-offset shadows (no blur), and flat saturated color-blocking in four accents. Bold uppercase Latin labels in a technical-spec register. No gradients, no rounded cards, no subtlety — the collision of flat colors is the design. Built for explanatory diagrams: pipelines, stages, comparisons, system maps, timelines.
+  A neo-brutalist editorial design system for editable canvases. Warm cream canvas, heavy 4px ink borders, hard solid-offset shadows (no blur), and flat saturated color-blocking in four accents. Bold uppercase Latin labels in a technical-spec register. No gradients, no rounded cards, no subtlety — the collision of flat colors is the design. Built for explanatory diagrams: pipelines, stages, comparisons, system maps, timelines.
 
 # ── COLOR ────────────────────────────────────────────────────
 colors:
@@ -30,7 +30,7 @@ stroke:
   radius: 0 # squared corners always (rx allowed only on an optional pill)
 ---
 
-# Riso Brut — Feishu SVG Whiteboard Design System
+# Riso Brut — Editable Canvas Design System
 
 A design system for building **explanatory diagrams** as editable Feishu whiteboards
 written in SVG. The aesthetic is neo-brutalist editorial: flat saturated color on warm
@@ -39,4 +39,8 @@ single dense frame that explains something — and looks designed, not templated
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

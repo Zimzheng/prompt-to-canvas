@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Long Table
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A warm single-ink palette in the spirit of a printed menu or recipe card. One buttery cream is the
   only surface, and one rust terracotta is the only ink: every text run, border, rule, pill outline,
@@ -30,7 +30,7 @@ stroke:
   radius: "low to none (rx 0 to 8); the look is a ruled paper table"
 ---
 
-# Long Table — Feishu SVG Whiteboard Design System
+# Long Table — Editable Canvas Design System
 
 One cream, one rust. The whole board is a buttery cream page marked entirely in a single warm
 terracotta: every line of text, every border, every rule, every pill, every page number is the same
@@ -39,4 +39,8 @@ weight, scale, and ruled lines carry the structure.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

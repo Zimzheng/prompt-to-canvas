@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Grove Block
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A warm-cream neobrutalist system built from flat, saturated color-blocks
   framed by a single heavy forest-green border. Cards abut inside one big
@@ -33,11 +33,15 @@ stroke:
   radius: 18 # generous soft-rounded corners on the outer frame and cards
 ---
 
-# Grove Block — Feishu SVG Whiteboard Design System
+# Grove Block — Editable Canvas Design System
 
 A loud, friendly neobrutalism: warm-cream canvas, one heavy forest-green frame, and
 flat color-blocked cards in pink, gold, and green. Bold and brand-forward, but fully flat.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

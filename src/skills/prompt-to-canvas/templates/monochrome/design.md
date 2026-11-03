@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Monochrome
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A single-surface editorial palette with no accent color at all. A warm off-yellow cream is the
   only canvas, a very dark olive-black is every text run, border, and divider, and two graphite
@@ -28,7 +28,7 @@ stroke:
   radius: "low to none (rx 0 to 6); the look is quiet and squared"
 ---
 
-# Monochrome — Feishu SVG Whiteboard Design System
+# Monochrome — Editable Canvas Design System
 
 One cream surface, one near-black ink, two greys. No accent. The restraint is the design: build the
 board so hierarchy comes from size, weight, and space, and let the warm cream and the olive-black ink
@@ -36,4 +36,8 @@ do all the work. Reach for this when the content should feel quiet, serious, and
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

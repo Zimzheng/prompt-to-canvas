@@ -4,9 +4,12 @@
 
 **把笔记、项目故事和技术方案，变成可以继续编辑的 Excalidraw 画布。**
 
-面向 Codex、Claude Code 等 AI 编码 Agent 的技能包。Agent 理解内容、组织信息层级，从 **35 种视觉风格**中选择视觉方向，构图后在内置本地编辑器中打开。你可以继续修改文字、形状和连接线，再导出 PNG 或 SVG。
+面向 Codex、Claude Code 等 AI 编码 Agent 的技能包。Agent 理解内容、组织信息层级，参考 **35 种视觉风格**或定义协调的自定义方向，构图后在内置本地编辑器中打开。你可以继续修改文字、形状和连接线，再导出 PNG 或 SVG。
 
 [开始安装](#安装) · [查看风格目录](src/skills/prompt-to-canvas/CATALOG.md) · [阅读技能工作流](src/skills/prompt-to-canvas/SKILL.md)
+
+
+实际生成效果：[两个 v1.2.0 示例](docs/EXAMPLES.md)，包含 PNG、SVG 源文件与可编辑场景。
 
 ## 看看视觉风格
 
@@ -38,8 +41,8 @@ Prompt to Canvas 基于 [Zara Zhang 的 beautiful-feishu-whiteboard](https://git
 | --- | --- |
 | **35 种视觉风格**：配色、气质、正式程度和设计指引 | [风格目录](src/skills/prompt-to-canvas/CATALOG.md)、[35 份风格设计文件](src/skills/prompt-to-canvas/templates/) |
 | **风格预览素材** | [35 张 PNG 预览图](src/skills/prompt-to-canvas/assets/styles/)；README 上方的 Soft Editorial 示例也来自上游 |
-| **SVG 绘图规则**：原生形状、可编辑文字、连接线与视觉检查 | [RULES.md](src/skills/prompt-to-canvas/RULES.md)直接复用上游规则；其中仍保留飞书字体、CLI 和渲染行为等平台专属说明，Excalidraw 执行流程请看[技能入口](src/skills/prompt-to-canvas/SKILL.md)与[画布规则](src/skills/prompt-to-canvas/rules/canvas-rules.md) |
-| **交互与设计方法**：先理解用途，再确认风格，从目录选风格后构图、检查和修正 | 在 [SKILL.md](src/skills/prompt-to-canvas/SKILL.md)中适配为本地 Excalidraw 工作流 |
+| **SVG 绘图规则**：原生形状、可编辑文字、连接线与视觉检查 | [RULES.md](src/skills/prompt-to-canvas/RULES.md)在上游设计原则基础上重写为当前 Excalidraw 转换能力说明，包含支持范围、编辑绑定与限制 |
+| **交互与设计方法**：理解用途、按内容构图、选择视觉方向、检查和修正 | 在 [SKILL.md](src/skills/prompt-to-canvas/SKILL.md)中适配为本地 Excalidraw 工作流 |
 
 35 种风格及其预览素材属于上游贡献。这里将“创新”限定为本项目在该基础上增加的实现与工作流扩展。
 
@@ -114,7 +117,7 @@ sh ~/.claude/skills/prompt-to-canvas/scripts/preflight.sh
 
 以上是虚构示例。也可以替换为自己的笔记、架构说明或项目复盘。
 
-首次没有具体风格方向时，Agent 会展示 2–3 种适合内容、视觉差异明显的候选与“由 AI 选择”的选项。你可以说“风格由你决定，直接生成”；已明确授权的范围、当前系列或设定过的默认偏好无需反复询问，接受一张画布本身不等于设定默认。专业、简洁等描述只用于筛选。候选同时比较[结构化风格特征](src/skills/prompt-to-canvas/STYLE_PROFILES.md)，预览仅参考配色、形状、字级和节奏，实际布局由内容关系决定；品牌和系列一致性优先。
+未指定风格时，Agent 会结合阅读任务、关系复杂度和信息密度自主选择，直接生成；没有固定默认风格，也无需先选模板。可使用 35 种视觉参考或协调的自定义方向。品牌与系列一致性优先；独立作品在同样适合时考虑不同视觉表现。先设计关系与空间结构，再应用视觉语言，支持泳道、分支汇合、嵌套边界、反馈和局部展开的组合。预览不限定布局、节点数或画布比例。需要候选预览或多个方案时可明确提出。
 
 Agent 会确认用途与风格，生成 SVG、转换并校验场景，再提供本地编辑器链接。打开链接后，调整文字与形状，使用顶部 **PNG / SVG** 按钮导出。
 

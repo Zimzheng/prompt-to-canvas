@@ -1,281 +1,31 @@
----
-title: 技术方案文档
-version: 1.0.0
-last_updated: 2026-06-30
----
+# 技术实现与边界
 
-# Prompt to Canvas 技术方案
+当前链路：用户内容 → Agent 识别实体/关系 → 空间构图与视觉方向 → SVG → 原生 Excalidraw
+场景 → 本地编辑器 → PNG/SVG。35 种视觉参考与自定义方向共同服务于内容，不是固定布局模板。
 
-## 1. 系统架构
+## 转换器
 
-### 1.1 整体架构图
+`src/skills/prompt-to-canvas/scripts/svg-to-scene.mjs` 无第三方运行时依赖，解析受限 SVG 子集。
+支持原生矩形、椭圆、菱形、开放/闭合折线、采样曲线、可编辑文字、分组及显式关联。
+解析器拒绝不支持的可见特性，避免静默遗漏；它不是完整的浏览器 SVG/CSS 实现。
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      Claude Code Agent                          │
-│                   (作为 AI 专家分析引擎)                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐  │
-│  │ 内容结构识别 │  │ 数据提取器  │  │ 可视化策略规划器         │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      Diagram Specification                       │
-│               (结构化图表描述 JSON)                               │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   Excalidraw Web Editor                         │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
-│  │ Canvas   │  │ Toolbar  │  │ Library  │  │ Export Engine    │  │
-│  │ Rendering│  │ Shapes   │  │ Templates│  │ PNG/SVG         │  │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
-```
+绑定使用现有 Excalidraw 0.18 场景字段，解析后统一建立正反引用；支持前向 ID 引用。
+文本采用保守的字宽估算，曲线采样点不是 Bézier 控制柄；没有自动布局、路由避障或字形测量服务。
+详细能力见 [RULES.md](../src/skills/prompt-to-canvas/RULES.md)。
 
-### 1.2 目录结构
+## 编辑器
 
-```
-canvasskill/
-├── docs/
-│   ├── PRD.md              # 产品需求文档
-│   ├── TECHNICAL.md        # 技术方案文档
-│   ├── USER_GUIDE.md       # 用户指南
-│   └── API.md              # API 设计文档
-├── src/
-│   ├── skills/
-│   │   └── prompt-to-canvas/
-│   │       ├── SKILL.md    # Skill 主入口
-│   │       ├── rules/
-│   │       │   ├── analysis-prompt.md      # AI 分析 Prompt
-│   │       │   ├── visualization-strategy.md # 可视化策略库
-│   │       │   └── export-handler.md       # 导出处理逻辑
-│   │       └── templates/
-│   │           ├── portfolio-dual.json     # Portfolio 模板
-│   │           ├── timeline.json            # 时间线模板
-│   │           └── comparison.json          # 对比图模板
-│   ├── editor/
-│   │   ├── index.html        # Vite 编辑器入口
-│   │   └── src/              # React + Excalidraw 源码
-│   └── static/
-│       ├── index.html        # 构建后的 Excalidraw 编辑器页面
-│       ├── editor-bridge.js  # 编辑器桥接逻辑
-│       └── assets/           # Vite 构建产物
-├── scripts/
-│   └── generate-template.js   # 模板生成脚本
-└── README.md
-```
+`src/editor` 是 React + Vite + Excalidraw 编辑器，分发运行时位于
+`src/skills/prompt-to-canvas/assets/editor`。当前优化不改变编辑器依赖，编辑器桥接脚本同步修复显式空箭头被误填的问题；其余预构建包保持原样。
+`open-editor.mjs` 在回环地址启动 HTTP 服务，每次分配独立场景路径和可用端口。
+普通使用不需要 npm 安装。开发编辑器使用 `npm ci`、`npm run build:skill`。
 
-## 2. 核心模块设计
+## 验证
 
-### 2.1 AI 专家分析引擎
+`npm test` 覆盖原有无描边修复、新几何/继承/绑定、错误输入与 CLI 行为。
+`preflight.sh` 检查运行时和资源完整性。场景校验检查 ID、有限几何、元素类型、组 ID、
+双向绑定和可选文字系统；不能替代实际渲染及语义检查。
 
-#### 分析流程
-
-```
-用户输入内容
-    │
-    ▼
-┌──────────────────────────────────────────────────────────────┐
-│  Step 1: 内容要素识别                                         │
-│  • 项目/经历要素：名称、背景、规模、角色                        │
-│  • 成果要素：量化指标、排名、荣誉                              │
-│  • 挑战要素：难点、问题、约束                                  │
-│  • 方案要素：方法、架构、技术、策略                            │
-└──────────────────────────────────────────────────────────────┘
-    │
-    ▼
-┌──────────────────────────────────────────────────────────────┐
-│  Step 2: 数据提取与结构化                                      │
-│  • 数值类：百分比、倍数、人数、时间                            │
-│  • 对比类：Before/After、目标/实际                            │
-│  • 排名类：Top N、唯一、首批                                  │
-└──────────────────────────────────────────────────────────────┘
-    │
-    ▼
-┌──────────────────────────────────────────────────────────────┐
-│  Step 3: 可视化策略推荐                                        │
-│  • 图表类型：架构图、数据大屏、时间线、对比图                   │
-│  • 布局策略：双栏、纵向、横向、网格                            │
-│  • 配色方案：professional/vibrant/minimal/tech               │
-│  • 强调策略：哪些信息需要突出显示                               │
-└──────────────────────────────────────────────────────────────┘
-```
-
-#### AI 分析 Prompt
-
-详见 [`src/skills/prompt-to-canvas/rules/analysis-prompt.md`](./src/skills/prompt-to-canvas/rules/analysis-prompt.md)
-
-### 2.2 Excalidraw 集成
-
-#### 集成方案
-
-| 方案 | 优点 | 缺点 |
-|------|------|------|
-| **A. Vite 本地打包 Excalidraw** | 直接可用、无需运行时依赖外网 | 构建产物较大 |
-| **B. CDN 加载 Excalidraw** | 零构建、页面轻 | 依赖外网 |
-| **C. 自研 Fabric.js 线条编辑器** | 完全可控 | 线条、箭头、历史和导出维护成本高 |
-
-**当前采用方案 A**：使用 Vite + React 打包 `@excalidraw/excalidraw`，构建产物输出到 `src/static`。
-
-#### 编辑器定制化
-
-| 定制项 | 实现方式 |
-|--------|---------|
-| 品牌色 | CSS 变量覆盖 |
-| 隐藏工具栏按钮 | Excalidraw UI 配置 |
-| 预设模板 | 预加载 Scene JSON |
-| 导出功能 | 调用 Excalidraw API |
-
-### 2.3 模板系统
-
-#### 模板结构 (JSON)
-
-```json
-{
-  "name": "portfolio-dual",
-  "displayName": "Portfolio 双栏图",
-  "description": "左侧架构/过程，右侧数据成果",
-  "palette": {
-    "primary": "#1e293b",
-    "secondary": "#3b82f6",
-    "accent": "#10b981",
-    "background": "#f8fafc",
-    "text": "#1e293b"
-  },
-  "layout": {
-    "type": "dual-column",
-    "leftWidth": "60%",
-    "rightWidth": "40%"
-  },
-  "elements": [
-    {
-      "id": "header",
-      "type": "text",
-      "position": "top",
-      "content": "{{title}}"
-    },
-    {
-      "id": "left-panel",
-      "type": "panel",
-      "position": "left",
-      "children": ["architecture", "design-decisions"]
-    },
-    {
-      "id": "right-panel",
-      "type": "panel",
-      "position": "right",
-      "children": ["metrics", "achievements"]
-    }
-  ]
-}
-```
-
-## 3. 数据流设计
-
-### 3.1 生成流程
-
-```
-1. 用户输入 → AI 分析 → DiagramSpec JSON
-2. DiagramSpec → Excalidraw Scene → Render
-3. 用户编辑 → Export API → PNG/SVG
-```
-
-### 3.2 DiagramSpec 格式
-
-```typescript
-interface DiagramSpec {
-  version: string;
-  metadata: {
-    title: string;
-    subtitle?: string;
-    tags: string[];
-    palette: PaletteType;
-  };
-  layout: LayoutSpec;
-  elements: ElementSpec[];
-  emphasis: EmphasisSpec[];
-}
-
-interface LayoutSpec {
-  type: 'dual-column' | 'timeline' | 'comparison' | 'grid' | 'freeform';
-  width: number;
-  height: number;
-  padding: number;
-}
-
-interface ElementSpec {
-  id: string;
-  type: 'text' | 'rect' | 'circle' | 'badge' | 'chart' | 'divider' | 'image';
-  position: { x: number; y: number };
-  size?: { width: number; height: number };
-  style?: Record<string, string>;
-  content?: string;
-  children?: string[];
-}
-```
-
-## 4. 部署方案
-
-### 4.1 当前版本部署
-
-Skill 文件复制到 Claude Code 的 skills 目录：
-
-```
-~/.claude/skills/prompt-to-canvas/
-├── SKILL.md
-├── rules/
-├── templates/
-└── src/
-```
-
-### 4.2 Web 编辑器部署
-
-| 方案 | 部署方式 | 适用场景 |
-|------|---------|---------|
-| **静态构建产物** | `npm run build` 后部署 `src/static` | 推荐，生产使用 |
-| **本地文件** | file:// 协议 | 开发调试 |
-| **内网部署** | 企业内网 | B2B 版本 |
-
-### 4.3 依赖清单
-
-| 依赖 | 版本 | 用途 | 来源 |
-|------|------|------|------|
-| @excalidraw/excalidraw | 0.18+ | 画布引擎 | npm |
-| React | 18+ | Excalidraw 依赖 | npm |
-| ReactDOM | 18+ | Excalidraw 依赖 | npm |
-| Vite | 6+ | 编辑器构建 | npm |
-
-## 5. 性能指标
-
-| 指标 | 目标值 | 说明 |
-|------|-------|------|
-| 首屏加载 | < 3s | 本地静态资源加载 |
-| 图表生成 | < 1s | JSON → Scene 转换 |
-| 导出 PNG | < 2s | 包含渲染时间 |
-| 用户操作延迟 | < 100ms | 编辑响应 |
-
-## 6. 兼容性
-
-| 平台 | 支持情况 |
-|------|---------|
-| Claude Code | ✅ 完整支持 |
-| Cursor | ✅ 可通过 skill 调用 |
-| Codex | ✅ 可通过 skill 调用 |
-| Claude Web | ⚠️ 需要手动打开编辑器链接 |
-| 移动端 | ⚠️ 编辑体验受限，建议 PC 使用 |
-
-## 7. 未来规划
-
-| Phase | 目标 | 优先级 |
-|-------|------|--------|
-| Phase 2 | 模板中心（更多预设模板） | P1 |
-| Phase 2 | 用途自动推断 | P1 |
-| Phase 3 | 企业版（B2B定制） | P2 |
-| Phase 3 | API 开放 | P2 |
-
----
-
-*文档版本：v1.0.0 | 最后更新：2026-06-30*
+行为评估应记录真实请求、选型、构图、追问数和最终输出，详见
+[STYLE_SELECTION_CHECKS.md](STYLE_SELECTION_CHECKS.md)。单次示例和代码测试不能证明分布层面的
+风格多样性改善。后续可按需求引入语义场景编译器或选择性自动路由，当前不宣称已具备。

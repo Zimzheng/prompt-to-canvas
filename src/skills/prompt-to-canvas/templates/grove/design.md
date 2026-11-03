@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Grove
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A grounded, editorial palette on a warm parchment page with deep forest green as the accent. The
   light parchment is the dominant background; forest green carries the headers, the accent fills, and
@@ -23,7 +23,7 @@ colors:
 # ── TEXT COLOR ───────────────────────────────────────────────
 text-rules:
   rule: "On the parchment page, text is forest green. On a green accent fill, text is cream. Coral is for small emphasis accents only, never body text."
-  note: "Large bold cream text on a green fill reads well on the live board. The image export renders text color unreliably, so judge color via --output_as raw or the live board, not the exported PNG."
+  note: "Large bold cream text on a green fill reads well on the live board. Inspect text colour and contrast in the local editor and final export."
 
 # ── STROKE & CORNERS ─────────────────────────────────────────
 stroke:
@@ -31,7 +31,7 @@ stroke:
   radius: "low to none (rx 0 to 8); editorial and squared"
 ---
 
-# Grove — Feishu SVG Whiteboard Design System
+# Grove — Editable Canvas Design System
 
 A warm parchment page with deep forest green as the accent. The parchment is the dominant ground; the
 forest green does the loud work as header bands, accent panels, and the body ink on parchment, with
@@ -40,4 +40,8 @@ emphasis, a short rule, a stat, or an ordinal, and never as a big fill. The disc
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

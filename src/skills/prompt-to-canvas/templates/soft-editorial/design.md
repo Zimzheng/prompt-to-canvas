@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Soft Editorial
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A warm magazine-spread palette in the register of a small-press literary quarterly. A warm
   cream page hosts soft pastel cards in three interchangeable candy tones (dusty pink, chartreuse,
@@ -26,7 +26,7 @@ stroke:
   radius: "rounded (rx 16 to 28) for the soft card feel; sharp (rx 0) is allowed when a crisper block is wanted. Both are native."
 ---
 
-# Soft Editorial — Feishu SVG Whiteboard Design System
+# Soft Editorial — Editable Canvas Design System
 
 A warm, paper-feeling palette: a single cream field with soft pastel cards floating on top and calm
 warm-black ink. The mood is a literary quarterly or a design-research notebook, not a tech keynote.
@@ -34,4 +34,8 @@ Let the cream breathe, let the three pastels share a scene, and keep every label
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

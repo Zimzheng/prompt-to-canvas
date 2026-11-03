@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: BlockFrame
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A maximalist neo-brutalist system built on 4px black borders, big 8px hard offset shadows, and a high-key candy palette of five saturated pastels plus cream. Display type is heavy uppercase. Tilted decorative shapes — rotated badges and rectangles — puncture the borders and break the grid on purpose. Pastels are paired loudly: pink + blue + green + yellow + cream cycle through every region. Borrows from zine layout, 90s sticker books, and toy packaging — bold, joyful, slightly chaotic, never timid.
 
@@ -34,7 +34,7 @@ stroke:
   radius: 0 # squared (a single rounded pill badge is the only exception)
 ---
 
-# BlockFrame — Feishu SVG Whiteboard Design System
+# BlockFrame — Editable Canvas Design System
 
 Loud, joyful neo-brutalism. Thick black borders, chunky 8px offset shadows, and a candy
 palette piled on without restraint. Tilted badges and blocks puncture the grid. The board
@@ -42,4 +42,8 @@ should feel like a sticker book or toy package — graphic, playful, a little ch
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

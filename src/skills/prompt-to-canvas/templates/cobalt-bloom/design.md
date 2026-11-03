@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Cobalt Bloom
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A maximal-typographic, two-tone editorial system — electric cobalt blue on a warm blush-salmon ground. The signature is OVERSIZED type: giant solid numerals that anchor the board and a word running vertically up an edge. Off-white book-page panels hold the small text. Fashion-magazine confidence, airy negative space, no clutter — and flat: no shadows. Built for headline boards, yearly/quarterly plans, single-number stats, and bold section openers.
 
@@ -31,7 +31,7 @@ stroke:
   radius: 0 # squared
 ---
 
-# Cobalt Bloom — Feishu SVG Whiteboard Design System
+# Cobalt Bloom — Editable Canvas Design System
 
 Two colors, enormous type. Electric cobalt on a blush-salmon field, with a giant numeral as
 the hero and a word climbing one edge. Confident, editorial, airy — the scale of the type _is_
@@ -39,4 +39,8 @@ the design. Flat throughout: no shadows, no clutter, no decorative chrome.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

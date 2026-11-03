@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Lime Slab
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A neobrutalist SaaS-landing aesthetic built on a single electric lime field and slab-heavy black type. Two flat canvases — an electric chartreuse hero and a warm cream body — host crisp white cards outlined in thin charcoal rules and squared pill chips. Depth is entirely flat: solid color blocks, hairline-but-readable borders, and big scale jumps, never a shadow. The type register is loud, tight, mixed-case display weight over quiet sentence-case body. Best for product explainers, feature breakdowns, comparison grids, and bright system maps that want energy without clutter.
 
@@ -25,10 +25,14 @@ stroke:
   radius: 12 # squared-soft: pills/chips use full radius (height/2); cards use 12; hero blocks 0
 ---
 
-# Lime Slab — Feishu SVG Whiteboard Design System
+# Lime Slab — Editable Canvas Design System
 
 A neobrutalist landing-page look: one electric lime field, heavy black slab-weight display, and crisp white cards with thin charcoal outlines on a warm cream body. Loud but tidy.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

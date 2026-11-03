@@ -61,7 +61,7 @@ function normalizeElement(element) {
     normalized.startBinding = normalized.startBinding ?? null;
     normalized.endBinding = normalized.endBinding ?? null;
     normalized.startArrowhead = normalized.startArrowhead ?? null;
-    normalized.endArrowhead = normalized.type === "arrow" ? (normalized.endArrowhead ?? "arrow") : null;
+    normalized.endArrowhead = normalized.type === "arrow" ? (normalized.endArrowhead === undefined ? "arrow" : normalized.endArrowhead) : null;
     normalized.backgroundColor = "transparent";
   }
 

@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Neo-Grid Bold
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A heavy editorial poster system built on a strict block grid with one neon-lemon accent on putty-ecru. Display type is bold uppercase; labels read as monospace-style metadata tags. Each board reads as a magazine spread divided into colored panels — paper-ecru, ink-black, and electric lemon trading roles across cells. Flatness is the point: no shadows, no rounded corners. Borrows from contemporary editorial print, brutalist annual reports, and populist design-week posters.
 
@@ -26,7 +26,7 @@ shadow:
   none: true # flatness is the identity — panels tile, they do not float. No offset shadows.
 ---
 
-# Neo-Grid Bold — Feishu SVG Whiteboard Design System
+# Neo-Grid Bold — Editable Canvas Design System
 
 A magazine spread, not a slide. Tile the board into a strict grid of rectangular panels;
 let paper-ecru, ink-black, and one electric lemon trade roles across the cells. Oversized
@@ -34,4 +34,8 @@ numerals fill panels; monospace-style tags label the margins. Dead flat — no s
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

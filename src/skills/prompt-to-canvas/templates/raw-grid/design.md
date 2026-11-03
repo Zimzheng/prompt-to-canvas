@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Raw Grid
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A neo-brutalist system where the borders ARE the layout. Pure white canvas, 3px solid black structure, and two muted pastel accents (blush + sage) plus neutral gray. Depth is hard black offset shadows — never blurred, never colored. Cells abut without gaps; a giant solid numeral anchors each step. Sharp, system-native, unmistakably digital — closer to a protest poster meets a Notion board than a polished deck.
 
@@ -29,7 +29,7 @@ stroke:
   radius: 0 # squared corners always
 ---
 
-# Raw Grid — Feishu SVG Whiteboard Design System
+# Raw Grid — Editable Canvas Design System
 
 The borders _are_ the design. Build the board as a tight grid of black-bordered cells
 that meet flush, fill them with white and muted pastels, and anchor each step with a giant
@@ -37,4 +37,8 @@ solid numeral in its own zone. The effect is sharp, system-native, digital.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

@@ -1,6 +1,6 @@
 {
   "name": "prompt-to-canvas",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "license": "MIT",
   "description": "Agent skill for turning content into polished editable Excalidraw canvases.",
@@ -10,7 +10,8 @@
     "build:skill": "npm run build && rsync -a --delete src/static/ src/skills/prompt-to-canvas/assets/editor/",
     "preflight": "src/skills/prompt-to-canvas/scripts/preflight.sh",
     "test:style": "node --test scripts/test-svg-style-fidelity.mjs",
-    "preview": "vite preview --host 127.0.0.1 --outDir src/static"
+    "preview": "vite preview --host 127.0.0.1 --outDir src/static",
+    "test": "node --test scripts/test-svg-style-fidelity.mjs src/skills/prompt-to-canvas/scripts/test-converter.mjs"
   },
   "dependencies": {
     "@excalidraw/excalidraw": "^0.18.0",

@@ -7,12 +7,12 @@ No particular slug is required except when the user explicitly selects it.
 
 | Request / context | Expected observable behaviour |
 | --- | --- |
-| First unstyled project canvas. | Offers 2–3 named suitable candidates with visible differences and an agent-picks option; waits before drawing. |
-| First canvas with only “professional, clean”. | Uses mood as a filter without fixing a template or level; candidates remain visibly different. |
+| First unstyled project canvas. | Autonomously chooses a fitting catalogue or custom direction and generates; no style question. |
+| First canvas with only “professional, clean”. | Uses mood as a constraint, not a template name; chooses and generates without a style question. |
 | “风格你定，直接生成，不要提问。” | Selects, announces a concrete reason and generates without another style question. |
 | “用 Raw Grid。” | Uses Raw Grid directly; content topology still determines the diagram structure. |
 | Explicit current-series continuation. | Preserves the series visual system despite recent repetition. |
-| Earlier “这次随你选”, then an unrelated task. | Does not assume standing delegation beyond “this time”. |
+| Earlier “这次随你选”, then an unrelated task. | Does not invent a standing preference; independently infers the new task's direction. |
 | User accepted one canvas but gave no standing preference. | Does not treat acceptance alone as a permanent preference or fixed template. |
 | Explicit “本次会话的独立画布都由你选”, then a similar task. | Proceeds within that scope; among equally suitable choices considers visual differences from recent independent canvases. |
 | Strict brand colours / dense labels / no shadows. | Keeps real constraints; does not force three styles, a Bold option or an incompatible family. Discloses any catalogue adaptation. |
@@ -39,3 +39,16 @@ fill-only rectangles/circles/ellipses, `stroke="none"`, zero-width and inline st
 and arrow endpoints, plus text ink. Inspect real editor exports too: a syntactically valid scene can
 still add unwanted outlines or lose relationships. Keep raw trial artifacts separate from corrected
 QA samples so fixes do not rewrite the evidence.
+
+## Composition and converter acceptance
+
+- Branch/join process: all conditions and the merge survive; no forced node limit.
+- Cross-role process: lane boundaries and handoffs are readable; exceptions stay distinct.
+- Nested system: containment and cross-boundary links coexist without becoming equal cards.
+- Timeline with alternate routes: time order and shared/divergent portions are visible.
+- Explicit custom brand: coherent treatment without claiming an unchanged catalogue template.
+- Explicit style-preview choice request: offer meaningful alternatives and wait for the answer.
+
+Run `npm test` for converter regressions. Open representative scenes, drag bound nodes and undo,
+then export PNG/SVG. Check actual text and endpoints after editor normalization. Record any visual
+fixes and test limitations. These samples are engineering QA, not independent model-distribution trials.

@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Coral
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A warm, friendly editorial palette built around a single signature coral. A vivid orange-red coral
   works both as accent (rules, borders, dots, eyebrows, numerals) and as a full-region surface, over a
@@ -28,7 +28,7 @@ stroke:
   radius: "low (rx 0 to 12); clean and modern"
 ---
 
-# Coral — Feishu SVG Whiteboard Design System
+# Coral — Editable Canvas Design System
 
 One warm coral does the talking. It is both the accent (a thin rule, a card border, a dot, an eyebrow,
 a numeral) and the hero surface (a cover band, a feature region, a left panel). Everything else stays
@@ -37,4 +37,8 @@ darker coral as a second tone where the source deck reached for a gradient.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

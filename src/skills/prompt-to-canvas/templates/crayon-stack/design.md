@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Crayon Stack
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A loud poster system in primary-school crayon brights on pure white, built from clean native shapes. Flat saturated color-blocks — rectangles, rounded-rects, and circles — abut and lean (via a slight `rotate()`) like books tipping on a shelf. Display type is heavy, all-caps, tightly stacked vermilion; block labels run vertically (rotated 90°) in contrasting hues. Built for explainers, taxonomies, "stacks" of options, and playful comparisons where energy and clash matter more than restraint.
 
@@ -27,10 +27,14 @@ stroke:
   radius: 0 # hard square corners by default; an optional rounded `rx` is the only allowed exception — never "organic"
 ---
 
-# Crayon Stack — Feishu SVG Whiteboard Design System
+# Crayon Stack — Editable Canvas Design System
 
 A clean native-shape poster medium: pure-white canvas, fistfuls of clashing crayon brights, and flat color rectangles that tip and abut like a shelf of books. Hierarchy is pure color and scale — never a line, never a shadow. Everything is a rectangle, rounded-rect, or circle.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

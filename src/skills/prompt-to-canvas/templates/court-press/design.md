@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Court Press
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A flat sports-poster system on a warm off-white page, with grass green and dusty pink as the two
   accents. Green carries the header bands, number balls, headings, and the closing banner; pink is the
@@ -36,7 +36,7 @@ stroke:
   radius: 0 # squared cards; circles (balls) are the curved motif
 ---
 
-# Court Press — Feishu SVG Whiteboard Design System
+# Court Press — Editable Canvas Design System
 
 A flat sports poster you can read at a glance. A warm off-white page, white panels with thin green
 borders, dusty-pink balls as the recurring motif, and grass-green header bands and number balls
@@ -45,4 +45,8 @@ pink-and-green clash on a clean page, never heavy, never shadowed.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Editorial Forest
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A serif-led editorial palette in the register of a literary quarterly or art-book monograph. A
   tight five-color set pairs a deep forest green with a dusty rose pink over an oat-cream paper
@@ -34,7 +34,7 @@ stroke:
   radius: "low to none (rx 0 to 8); the look is squared editorial, not soft"
 ---
 
-# Editorial Forest — Feishu SVG Whiteboard Design System
+# Editorial Forest — Editable Canvas Design System
 
 A deep forest green, a dusty rose, and an oat-cream page: three surfaces and a couple of near-duplicate
 shades, used with editorial discipline. Pick one surface to anchor a scene, keep the color count low,
@@ -42,4 +42,8 @@ and let the green-and-pink pairing carry the identity.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

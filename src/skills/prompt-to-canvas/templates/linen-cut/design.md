@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Linen Cut
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A mid-century modernist color-block system in the spirit of Eames-era Herman Miller and Phaidon monographs — a warm natural-linen ground holding a few bold flat blocks and discs in true primary blue, green, and red, with crisp near-black type set top-left. Calm, confident, and graphic; vast negative space and three loud-but-flat primaries do all the work. No grids, no shadows, no chrome — depth is pure color-blocking and scale. Built for cover-style hero boards, manifestos, big-idea explainers, and three-way comparisons that should feel like a gallery print, not a diagram.
 
@@ -19,7 +19,7 @@ colors:
 # ── TEXT COLOR ───────────────────────────────────────────────
 text-rules:
   rule: "All text is INK (#1F1A14, warm near-black). Reads crisply on the linen canvas."
-  note: "Text color isn't restricted on the board; ink is the design choice. (To check a text color, use --output_as raw or the live board — the image export renders text color unreliably / often black.)"
+  note: "Ink is the design choice. Check text colour and contrast in the local editor and final export."
 
 # ── DEPTH ────────────────────────────────────────────────────
 # FLAT — no shadows, no gradients. Depth = flat saturated color-blocks (rects + discs),
@@ -38,7 +38,7 @@ stroke:
   radius: 0 # squared by default; rx ≤ 8 on the rare rounded card
 ---
 
-# Linen Cut — Feishu SVG Whiteboard Design System
+# Linen Cut — Editable Canvas Design System
 
 A Herman Miller / Phaidon book cover as a whiteboard. A warm linen page, a few bold flat blocks
 and discs in primary blue, green, and red, and crisp near-black type set flush top-left.
@@ -47,4 +47,8 @@ and give the type room to breathe.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

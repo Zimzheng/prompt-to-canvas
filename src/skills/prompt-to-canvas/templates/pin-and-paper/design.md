@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Pin & Paper
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A clean, graphic three-color palette: a white page with a royal cobalt blue and a canary yellow as
   the two accents. Blue leads as both the ink and the bold surface (text, borders, header bands, key
@@ -19,7 +19,7 @@ colors:
 # ── TEXT COLOR ───────────────────────────────────────────────
 text-rules:
   rule: "On the white page and on white cards, text is blue. On a blue fill, text is white (body) or yellow (a heading or numeral). Never use yellow for text on white."
-  note: "Large bold white/yellow text on the cobalt fill reads well on the live board. The image export renders text color unreliably, so judge color via --output_as raw or the live board, not the exported PNG."
+  note: "Large bold white/yellow text on the cobalt fill reads well on the live board. Inspect text colour and contrast in the local editor and final export."
 
 # ── STROKE & CORNERS ─────────────────────────────────────────
 stroke:
@@ -28,7 +28,7 @@ stroke:
   radius: "low (rx 0 to 10); crisp and graphic"
 ---
 
-# Pin & Paper — Feishu SVG Whiteboard Design System
+# Pin & Paper — Editable Canvas Design System
 
 A clean white page with a royal cobalt that is both the ink and a bold surface, and a canary yellow for
 the punch. Lead with blue (title, body, header bands, card borders), let yellow snap in on the big
@@ -37,4 +37,8 @@ accents pop.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

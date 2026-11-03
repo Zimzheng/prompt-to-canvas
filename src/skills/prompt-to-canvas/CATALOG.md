@@ -1,13 +1,10 @@
 # Style Catalogue
 
-Use this table with [the style-selection rule](rules/style-selection.md) and
-[comparison profiles](STYLE_PROFILES.md). No style or level is the default. First resolve whether
-user choice is needed from the current request and established preferences. Filter by real task
-constraints, then compare visual differences; a professional audience can suit several directions.
-
-This table supplies palette, vibe, and formality; the profiles add source-linked density, hierarchy,
-geometry, depth, and rhythm. After selection, read the chosen `templates/<slug>/design.md` for exact
-rules. Previews illustrate visual language, not required layouts. Do not load all design files.
+Use these 35 references for visual treatment, alongside [style selection](rules/style-selection.md)
+and [profiles](STYLE_PROFILES.md). With no specified style, choose autonomously from the content;
+no style or level is the default. A coherent custom or brand-adapted direction is also valid.
+Previews are not layout templates. Read the chosen design guide, and use current [RULES.md](RULES.md)
+for actual renderer capabilities.
 
 The 35 styles are grouped into three levels, from restrained to bold:
 
@@ -70,15 +67,9 @@ restrained / refined / institutional.
 
 ## How to choose
 
-1. **Filter by the brief.** Match real constraints, audience, mood, formality, and colour preferences;
-   do not assign a level solely from the subject or default to Balanced when uncertain.
-2. **Compare across the full table and [profiles](STYLE_PROFILES.md).** Shortlist suitable styles with visibly different visual
-   characters, following [the style-selection rule](rules/style-selection.md).
-3. **Resolve the choice.** Use the interaction routes in the style-selection rule; avoid asking again within an established scope. For delegated
-   choices, use fit and available history to avoid repeating an equally suitable visual family.
-4. Ignore the Excalidraw infinite canvas background when choosing a style. It is an editor setting;
-   template paper/background colour remains part of the artifact as an editable rectangle.
-5. Read the selected `design.md` for each output after selection. The table supplies the shortlist;
-   do not load all 35 design files. Previews can help the user compare the candidates.
-6. Offer to switch afterwards. A new style changes composition grammar, hierarchy, density, shape
-   treatment, and palette according to its design rules, while preserving the content.
+Match reading task, audience, label load and relationship complexity before palette preference.
+Compare suitable visual directions rather than defaulting to a level, first row or familiar style.
+Use available conversation history to break ties for independent outputs; preserve requested series
+continuity. Read a few full guides only when needed to resolve fit. Apply visual treatment within
+the content's topology. Use a clearly identified custom/adapted direction when the references do
+not fit. See [rules/style-selection.md](rules/style-selection.md) for the complete selection policy.

@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Bold Poster
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A populist editorial-poster palette of uncompromising restraint: a white canvas, a deep brown-black
   ink, a single saturated tomato red, and a warm off-white for alternating panels. No secondary brand
@@ -31,7 +31,7 @@ stroke:
   radius: "0; squared print-poster corners"
 ---
 
-# Bold Poster — Feishu SVG Whiteboard Design System
+# Bold Poster — Editable Canvas Design System
 
 White paper, brown-black ink, one tomato red. The discipline is the point: every emphasis moment is
 red and nothing else is, so the red has to be earned. Use the warm off-white only to stripe alternating
@@ -40,4 +40,8 @@ display word for poster weight.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

@@ -1,9 +1,9 @@
 ---
 version: 1.0
 name: Apricot Arc
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
-  A warm mid-century geometric design system for Feishu SVG whiteboards. Soft cream canvas, no borders and no shadows — depth comes purely from flat apricot-and-salmon color-blocking and a signature half-circle (arc) motif laid out on a tight checkerboard rhythm. Rounded, friendly, two-hue palette with a deep terracotta ink reserved for text inside light panels. Calm and retro rather than loud. Built for explanatory diagrams that benefit from a soft, rhythmic, optimistic register: stages, comparisons, system maps, timelines, and step pipelines.
+  A warm mid-century geometric design system for editable canvases. Soft cream canvas, no borders and no shadows — depth comes purely from flat apricot-and-salmon color-blocking and a signature half-circle (arc) motif laid out on a tight checkerboard rhythm. Rounded, friendly, two-hue palette with a deep terracotta ink reserved for text inside light panels. Calm and retro rather than loud. Built for explanatory diagrams that benefit from a soft, rhythmic, optimistic register: stages, comparisons, system maps, timelines, and step pipelines.
 
 # ── COLOR ────────────────────────────────────────────────────
 colors:
@@ -15,7 +15,7 @@ colors:
   ink-2: "#7A4A33" # softer brown for secondary text on light panels
   # Use the 2-hue core (orange + salmon) per scene — that pairing IS the identity; terracotta is for ink only, not a fill block.
   # Dark (terracotta) text on light fills always. No black — the system stays warm.
-  # Opacity is ignored: get a lighter shade by choosing a lighter solid (cream over salmon over orange), never by fading.
+  # Prefer solid lighter shades (cream over salmon over orange) for this palette.
 
 # ── DEPTH ────────────────────────────────────────────────────
 # FLAT system — NO shadows of any kind (no blur, no duplicate-offset trick).
@@ -29,7 +29,7 @@ stroke:
   radius: 24 # generously rounded corners (soft mid-century); 0 only for tight color-block tiling
 ---
 
-# Apricot Arc — Feishu SVG Whiteboard Design System
+# Apricot Arc — Editable Canvas Design System
 
 A design system for building **explanatory diagrams** as editable Feishu whiteboards
 written in SVG. The aesthetic is warm mid-century geometric: flat apricot-and-salmon
@@ -39,4 +39,8 @@ optimistic — depth is carried entirely by flat color and scale, never by outli
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

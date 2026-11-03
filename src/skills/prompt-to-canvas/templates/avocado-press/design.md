@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Avocado Press
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A crisp duotone on a white page: a deep French blue and a pale avocado lime as the two accents,
   with the blue carrying the type. Blue leads as both the ink and the bold surface (header bands, key
@@ -19,7 +19,7 @@ colors:
 # ── TEXT COLOR ───────────────────────────────────────────────
 text-rules:
   rule: "On the white page, text is blue. On a blue fill, text is lime (large display) or white (body). Never use lime for text on white."
-  note: "Large bold lime/white text on the blue fill reads well on the live board. The image export renders text color unreliably, so judge color via --output_as raw or the live board, not the exported PNG."
+  note: "Large bold lime/white text on the blue fill reads well on the live board. Inspect text colour and contrast in the local editor and final export."
 
 # ── STROKE & CORNERS ─────────────────────────────────────────
 stroke:
@@ -28,7 +28,7 @@ stroke:
   radius: "low (rx 0 to 8); crisp and modern"
 ---
 
-# Avocado Press — Feishu SVG Whiteboard Design System
+# Avocado Press — Editable Canvas Design System
 
 A clean white page with a deep French blue that is both the ink and a bold surface, and a pale avocado
 lime for the punch. Lead with blue (title, body, header bands), let lime snap in on the big numerals, a
@@ -36,4 +36,8 @@ highlight chip, and the thin rules, and keep the white open so the duotone pops.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

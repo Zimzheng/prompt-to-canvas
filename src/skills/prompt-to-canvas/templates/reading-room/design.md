@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Reading Room
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A quiet literary-editorial system built from cream paper, a thin drawn black frame,
   and big all-caps headline type, warmed by three soft pastel color-blocks (lilac,
@@ -37,7 +37,7 @@ stroke:
   radius: 0 # squared corners; the ONE rounded exception is the mug/badge "cup" motif (large radius pill)
 ---
 
-# Reading Room — Feishu SVG Whiteboard Design System
+# Reading Room — Editable Canvas Design System
 
 A poised, bookish editorial system: cream paper inside a thin drawn black frame, a
 monumental all-caps headline, and a few soft pastel blocks doing the only coloring. It
@@ -45,4 +45,8 @@ reads like a literary poster — calm, line-driven, lots of empty cream.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

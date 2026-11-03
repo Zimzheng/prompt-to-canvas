@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Violet Marker
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A friendly highlighter palette on a white page: a bright lavender-violet and an acid lime-green as
   the two accents, with black type. Violet does the colour-blocks (header bands, chips); lime is the
@@ -22,7 +22,7 @@ colors:
 # ── TEXT COLOR ───────────────────────────────────────────────
 text-rules:
   rule: "Text is black (or slate for body) on white and on violet. Lime is only a highlighter fill behind black text or a small mark, never text itself."
-  note: "Black text on violet reads fine on the live board. The image export renders text color unreliably, so judge color via --output_as raw or the live board, not the exported PNG."
+  note: "Black text on violet reads fine on the live board. Inspect text colour and contrast in the local editor and final export."
 
 # ── STROKE & CORNERS ─────────────────────────────────────────
 stroke:
@@ -31,7 +31,7 @@ stroke:
   radius: "low (rx 0 to 10); clean and modern"
 ---
 
-# Violet Marker — Feishu SVG Whiteboard Design System
+# Violet Marker — Editable Canvas Design System
 
 A clean white page with bright violet colour-blocks and one acid-lime highlighter. Lead with black
 type, let the violet header bands and chips carry the structure, and spend the lime on a single
@@ -40,4 +40,8 @@ airy, not boxed-in.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

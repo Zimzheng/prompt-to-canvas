@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Berry Pop
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A fresh, fruity brand palette: a clean white page with two pop accents, a deep raspberry-wine and a
   pale periwinkle. The raspberry is the loud hero (bold fills, headers, big blocks) and a darker wine
@@ -22,7 +22,7 @@ colors:
 # ── TEXT COLOR ───────────────────────────────────────────────
 text-rules:
   rule: "Text is berry-deep on the white page (a deep wine that reads like ink). On a berry fill, use large bold white or pale periwinkle. Keep periwinkle out of small text on white (too pale)."
-  note: "Large bold light text on the berry fill reads well on the live board. The image export renders text color unreliably, so judge color via --output_as raw or the live board, not the exported PNG."
+  note: "Large bold light text on the berry fill reads well on the live board. Inspect text colour and contrast in the local editor and final export."
 
 # ── STROKE & CORNERS ─────────────────────────────────────────
 stroke:
@@ -31,7 +31,7 @@ stroke:
   radius: "rounded (rx 12 to 22) suits the soft, poppy mood; sharp (rx 0) is fine for crisp blocks"
 ---
 
-# Berry Pop — Feishu SVG Whiteboard Design System
+# Berry Pop — Editable Canvas Design System
 
 A bright white page with a raspberry-wine hero and a pale periwinkle counter. Lead with the berry on
 fills and headers, support with the soft periwinkle, and write text in the deep wine so it reads like
@@ -39,4 +39,8 @@ ink while staying in the family. Keep the white open and let the two pops do the
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

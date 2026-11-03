@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Riptide Cobalt
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A two-tone Marimekko-grade poster system — electric cobalt and warm cream locked in interlocking color blocks, with no third color and no ornament. The canvas is warm cream; structure comes from big solid cobalt bands and chunky squared panels, never from shadow. Type is heavy and quiet, sitting in high-contrast panels so the loud color-blocking carries the energy. Best for bold single-idea hero boards, two-sided comparisons, simple stage flows, and section dividers where mood matters more than density.
 
@@ -27,10 +27,14 @@ stroke:
   radius: 0 # panels are hard-squared by default; rounded-rect (rx) allowed as a deliberate per-block choice
 ---
 
-# Riptide Cobalt — Feishu SVG Whiteboard Design System
+# Riptide Cobalt — Editable Canvas Design System
 
 A loud-but-quiet duotone: electric cobalt and warm cream interlock as bold rectangular bands and color blocks, while all text sits in calm high-contrast panels. The color does the shouting; the type stays composed.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

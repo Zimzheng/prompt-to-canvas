@@ -4,9 +4,12 @@
 
 **Turn notes, project stories, and technical plans into Excalidraw canvases you can keep editing.**
 
-A skill package for AI coding agents such as Codex and Claude Code. The agent organizes your content, chooses a visual direction from **35 styles**, composes a layout, and opens it in the bundled local editor. Edit text, shapes, and connectors, then export PNG or SVG.
+A skill package for AI coding agents such as Codex and Claude Code. The agent organizes your content, uses **35 visual references** or a coherent custom direction, composes a layout, and opens it in the bundled local editor. Edit text, shapes, and connectors, then export PNG or SVG.
 
 [Install](#install) · [Browse styles](src/skills/prompt-to-canvas/CATALOG.md) · [Read the workflow](src/skills/prompt-to-canvas/SKILL.md)
+
+
+See [two actual v1.2.0 outputs](docs/EXAMPLES.md), including PNG exports, SVG sources and editable scenes.
 
 ## Visual preview
 
@@ -38,7 +41,7 @@ Prompt to Canvas reuses and extends the visual system from [Zara Zhang's beautif
 | --- | --- |
 | **35 visual styles**: palettes, mood, formality, and design guidance | [Style catalogue](src/skills/prompt-to-canvas/CATALOG.md) and [35 style design files](src/skills/prompt-to-canvas/templates/) |
 | **Style preview assets** | [35 PNG previews](src/skills/prompt-to-canvas/assets/styles/), including the Soft Editorial example shown above |
-| **SVG drawing rules**: native shapes, editable text, connectors, and visual review | [RULES.md](src/skills/prompt-to-canvas/RULES.md) is directly reused from upstream. It still includes Feishu-specific font, CLI, and rendering notes; use the [skill entry point](src/skills/prompt-to-canvas/SKILL.md) and [canvas rules](src/skills/prompt-to-canvas/rules/canvas-rules.md) for the Excalidraw execution workflow |
+| **SVG drawing rules**: native shapes, editable text, connectors, and visual review | [RULES.md](src/skills/prompt-to-canvas/RULES.md) adapts the upstream design principles into the current Excalidraw conversion contract, including supported geometry, editing bindings and limitations |
 | **Interaction and design method**: understand the purpose, confirm the style, select from the catalogue, compose, inspect, and refine | Adapted to the local Excalidraw workflow in [SKILL.md](src/skills/prompt-to-canvas/SKILL.md) |
 
 The 35 styles and their preview assets are upstream contributions. “Innovation” here refers to implementation and workflow extensions this project adds on top of that foundation.
@@ -114,7 +117,7 @@ Highlight each phase's goal and deliverable.
 
 This is a fictional example. Replace it with your notes, architecture description, or project review.
 
-For a first canvas without a specific direction, the agent offers 2–3 suitable, visibly distinct candidates and an agent-picks option. Say “Choose the style for me and generate directly” to delegate. Scoped delegation, a current series, or an explicitly established default avoids repeated questions; accepting one canvas alone does not set a default. Broad moods filter the pool. Candidates also compare [structured visual profiles](src/skills/prompt-to-canvas/STYLE_PROFILES.md); previews guide visual language while the actual content determines layout. Brand and series continuity take priority.
+Without a specified style, the agent chooses autonomously from the reading task, label load and relationship complexity. There is no fixed default style or mandatory template question. Use a catalogue reference or a coherent custom direction; brand and series continuity take priority. Compose topology before visual treatment, combining lanes, branches, joins, nested boundaries, feedback and detail views as useful. Previews do not prescribe layout, node count or aspect ratio. Request candidate previews or multiple variants explicitly when needed.
 
 The agent confirms purpose and style, builds SVG, converts and validates the scene, and provides a local editor link. Open it, edit the text and shapes, and use the **PNG / SVG** buttons to export.
 

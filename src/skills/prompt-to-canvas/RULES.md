@@ -1,113 +1,88 @@
-# SVG to Editable Excalidraw — Medium Rules
+# SVG → editable Excalidraw capabilities
 
-These apply to every Prompt to Canvas output. The visual library originated with Feishu;
-this package delivers locally through SVG → native Excalidraw scene JSON. Use the conversion and
-inspection workflow below. References to Feishu in upstream template names are historical context,
-not instructions to create external documents. The selected design supplies visual language;
-content determines narrative structure.
+This is the local Excalidraw workflow. Renderer labels and Feishu export caveats in upstream design
+assets are historical; this file defines current conversion behavior.
 
-## Hard rules
+## Supported SVG subset
 
-- **Text-family limitation.** The converter currently writes numeric Excalidraw `fontFamily: 1`.
-  It does not preserve arbitrary SVG font families, weights, or letter spacing. Do not set
-  `font-family` or promise a reference typeface; use size, contrast, spacing and placement for hierarchy.
-- **Explicit element styles.** Put fill, stroke, and stroke width on each element (or its inline
-  style); this converter does not inherit group CSS. An omitted stroke, `stroke="none"`, or zero
-  stroke width remains borderless. Use explicit strokes for visible connectors and outlines.
-- **Text lives in `<text>` / `<tspan>`** — never outline glyphs as `<path>`.
-- **Shape vocabulary is native-only — a rectangles-and-circles tool.** Build everything from
-  `<rect>` (sharp or rounded `rx`), `<circle>`, `<ellipse>`, straight `<line>` / `<polyline>`
-  connectors, and `<text>` — these become real editable shapes. Do not rely on `<polygon>` or
-  curved/bezier `<path>`: this converter does not turn them into editable structural shapes.
-  A path inside a marker definition only signals an arrowhead; it is not a rendered shape. **No freeform / organic / illustrative shapes** (blobs,
-  leaves, petals, waves, coral, fans, flowers, stars, confetti, doodles, mascots, "hand-cut"
-  silhouettes). If a reference is organic, keep only its **palette** and rebuild with rects + circles.
-- **Arrows = native connectors, never hand-drawn heads.** To put an arrowhead on a line, give the
-  `<line>` or `<polyline>` a **`marker-end`** (and `marker-start` for a double-headed arrow)
-  pointing at a `<marker>` in `<defs>`. The board converts these into **native connectors with a
-  clean built-in arrowhead**, and the arrow takes the line's `stroke` colour. **Never draw an
-  arrowhead as a separate `<polygon>` / triangle** — use a native arrowhead instead. One marker definition serves the whole board:
-  ```svg
-  <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="4"
-            orient="auto" markerUnits="strokeWidth"><path d="M0 0 L10 4 L0 8 z"/></marker>
-  </defs>
-  <line x1="100" y1="80" x2="360" y2="80" stroke="#0D4FA8" stroke-width="3" marker-end="url(#arrow)"/>
-  <!-- right-angled connector: polyline (H/V points) + marker-end -->
-  <polyline points="100,140 240,140 240,220" fill="none" stroke="#0D4FA8" stroke-width="3" marker-end="url(#arrow)"/>
-  <!-- double-headed (e.g. read/write): add marker-start too -->
-  <line x1="100" y1="280" x2="360" y2="280" stroke="#0D4FA8" stroke-width="3" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
-  ```
-  (The marker's own shape/colour is ignored on the board; it just signals "put a native arrowhead
-  here." Keep the line straight or right-angled — those map to clean `straight` / `right_angled` connectors.)
-  **The classic defect** is a `<line>` plus a separate little `<polyline>` / `<polygon>` chevron drawn
-  at its tip — that chevron IS a hand-drawn arrowhead. Delete it and put `marker-end` on the line.
-  **Mandatory self-check before you write the board:** run
-  `grep -nE '<polygon|<polyline' <dir>/diagram.svg` — every `<polygon>`, and every short `<polyline>`
-  shaped like a triangle/chevron at a line's endpoint, is a defect to convert. (A `<polyline>` is fine
-  ONLY as a right-angled connector path that itself carries `marker-end` and has no separate chevron.)
-  **This matters most when you START FROM or EDIT an existing SVG** (a gallery template, a previous
-  board, a translation): its arrows may predate this rule and still be hand-drawn — re-check and
-  convert them, don't just edit the text around them.
-- **Forbidden** (unsupported in this native conversion workflow): any gradient, `<filter>`, `<pattern>`,
-  `<clipPath>`, `<mask>`, blur.
-- **Opacity is ignored.** `opacity` / `fill-opacity` / `stroke-opacity` all render fully opaque.
-  To get a paler tint, use a **solid lighter hex** — never alpha. (To fake a translucent overlap,
-  paint the overlap region as its own solid darker shape.)
-- **Text contrast.** Use explicit solid text colours with strong contrast. Inspect the local
-  editor and export; do not rely on Feishu-specific export colour caveats. Typography and line
-  wrapping can differ after conversion, so the source SVG alone is not sufficient visual QA.
-- **Shadows.** No blur/filter shadows (unsupported). Hard **offset shadows are allowed and fine** —
-  draw one as a **solid duplicate of the SAME shape** offset behind the real one (never a blur). It must
-  match the element's shape exactly: same `rx` (a pill's shadow is a pill, not a rect), same `width`/`height`,
-  and inside the same `rotate()` group so it tilts with the element. Default can still be flat — depth also
-  comes from flat color blocks, role-swaps, and scale. A selected design's explicit no-shadow rule
-  forbids hard offsets too. Conversely, generic legacy boilerplate saying “no gradients/filters/shadows”
-  does not override an explicit hard-offset recipe in that design.
-- **No decorative micro-chrome.** No ornamental kicker/footer/slug/metadata labels. Every text
-  element must be load-bearing and legible (≥ ~16px, strong contrast); keep small text inside
-  high-contrast panels, never small on a colored canvas.
-- **Never echo the user's instructions or your own process onto the board.** The board shows the
-  **content** — never the request that produced it, the inputs you read, or how you built it. A
-  whiteboard is a finished artifact, not a homework submission, so it carries no "here's what you
-  asked for" framing. Cut every meta / process line, for example:
-  - scope or task notes — _"整理范围：仅总结张睿发言；问答部分按她的回答归纳"_, _"本图涵盖第 3-5 章"_
-  - source citations — _"来源：会议逐字稿 00:06:28–00:52:58 的张睿发言"_, _"based on the attached doc"_
-  - the chosen style / template name — _"风格：Specimen Bold"_, _"Riso Brut template"_
-  - audience / format directions, restatements of the prompt, and _"summary of… / 总结自…"_ framing
-  - dates, tokens, file paths, or tooling you were not explicitly asked to display
+| Input | Editable result / limits |
+| --- | --- |
+| `rect` | Rectangle; positive `rx`/`ry` selects native rounded treatment, not an exact CSS radius |
+| `circle`, `ellipse` | Native ellipse |
+| `polygon` | Axis-aligned centered four-point diamond becomes `diamond`; other polygons become closed native lines |
+| `line`, `polyline` | Native lines; marker attributes create native arrows |
+| `path` | One subpath using M/L/H/V/C/Q/Z, absolute or relative; curves are sampled into editable line points |
+| `text`, `tspan` | Editable text; tspans are explicit lines, not independent inline typography |
+| `g` | Transform/style inheritance; each group preserves an editable group ID |
+| `defs`, `marker` | Definitions are not rendered; marker presence selects native arrowheads |
 
-  A **title may name the subject** (e.g. _"张睿 · 发言总结"_ is fine — that is the topic), but nothing
-  on the board may describe the task, the source material, or the tool. **Litmus test:** if a line is
-  addressed to the person who asked (or to a grader) rather than being a real part of the artifact,
-  delete it. Put that kind of context in your chat reply to the user, never on the canvas.
+Always supply explicit fill/stroke for predictable appearance. Omitted/none/zero-width stroke is
+borderless. Supported inherited paint attributes include fill, stroke, stroke width/dash, font size,
+text anchor, and markers. Inline styles override presentation attributes. Dash arrays select canonical native dashes rather
+than reproducing exact SVG dash lengths. Global CSS and selectors
+are unsupported. Use `translate`, `rotate`, uniform `scale`; nonuniform scale, skew and matrix
+transforms are rejected instead of silently changing geometry.
 
-- **Transforms:** `translate` / `rotate` / `scale` are safe; avoid `skewX` / `skewY` / `matrix(...)`.
-- **No fixed canvas.** No 16:9, no scaler. Work in a logical coordinate space (≈1600–1700 wide) and
-  let content define the bounds.
-- **Allow for text bounds** (CJK ≈ 1em, Latin ≈ 0.6em as rough estimates). Pad boxes generously; never fit text to
-  the pixel; wrap long lines across `<tspan>`s rather than shrinking.
+Curve sampling approximates the shape; it does not preserve a Bézier editing handle. Arc/S/T
+commands, multiple subpaths, gradients, filters, patterns, clipping, masks, use/image/foreignObject
+and external resources are unsupported. Visible unsupported features fail conversion before an
+output is written. Simplify them or choose another representation; do not flatten a structural
+relationship to an image. Comments and definition geometry do not create scene elements.
 
-## Local workflow
+## Text and opacity
 
-1. Resolve style using [rules/style-selection.md](rules/style-selection.md); read the chosen design.
-   Choose narrative structure from the content, not the preview's example columns or node count.
-2. Compose a native-shape SVG at a logical width around 1600–1700; height follows content.
-   Every visible label remains editable text. Check arrows with `rg -n '<polygon|<polyline' diagram.svg`;
-   structural polylines should carry `marker-end` where direction is intended.
-3. Convert and validate with the bundled scripts:
+Default text uses numeric Excalidraw font ID 1 for compatibility. `data-font-family="2"` selects the
+native normal sans-serif alternative; 1, 2 and 3 are supported. Put it on text or an enclosing group.
+Arbitrary CSS font families, font weight and letter spacing are not reproduced; the converter warns.
+Create hierarchy with scale, placement and contrast. It estimates text bounds rather than measuring
+browser glyphs. Wrap with tspans and inspect actual editor/export text; do not rely on pixel-tight fits.
+
+Element opacity is supported. Group opacity multiplies descendant opacity per element, which is
+not SVG group compositing for overlapping shapes; a diagnostic calls out this approximation.
+Independent fill/stroke opacity is unsupported: use a common element opacity or explicit solid tints.
+Use solid text colours with strong contrast. Hard offset shadows can be duplicate matching shapes
+when compatible with the chosen visual direction; blur shadows remain unsupported.
+
+## Grouping and bindings
+
+Give meaningful IDs to nodes, labels, groups and edges. SVG group IDs become Excalidraw groupIds
+with innermost group first. Grouping preserves joint selection; binding preserves relationships.
+Only one text element can be bound to each rectangle, ellipse or diamond. Keep other annotations
+unbound or group them with the component. Container text should be centered and fit comfortably.
+
+```svg
+<g id="review-component" data-font-family="2">
+  <polygon id="review" points="400,100 500,170 400,240 300,170"
+           fill="#fff" stroke="#273548" stroke-width="2"/>
+  <text id="review-label" x="400" y="178" text-anchor="middle"
+        font-size="22" fill="#273548" data-container-id="review">通过？</text>
+</g>
+<polyline id="accepted" points="500,170 560,170 560,320 620,320"
+          fill="none" stroke="#273548" stroke-width="2"
+          data-start-id="review" data-end-id="publish" marker-end="url(#arrow)"/>
+```
+
+`publish` must exist elsewhere in the same SVG. Bindings are resolved after conversion, so forward
+references work. Attributes accept bare IDs or #IDs. Arrows may bind one or both ends; lines without
+arrow markers cannot carry endpoint bindings. Keep endpoints on or just outside their intended
+shape boundary. The converter records reciprocal references and estimates binding focus/gap;
+inspect dragging in the actual editor. Sampled curves reserve an endpoint tangent span for
+node movement; this can slightly change their rendering. Large moves can still require manual
+route adjustment. No automatic layout, obstacle avoidance or implicit nearest-
+node attachment is performed. Explicit attributes prevent accidental attachment to background panels.
+
+## Conversion discipline
+
+Use a real viewBox and content-driven bounds; the converter does not scale or clip the scene to it.
+Keep every visible label as text. Use marker attributes rather than drawing separate arrowhead
+triangles. Native arrowheads are intentionally canonical rather than arbitrary marker geometry.
+Use a white infinite background and an editable rectangle for coloured artifact paper.
 
 ```sh
 node scripts/svg-to-scene.mjs --svg diagram.svg --out scene.json
-node scripts/validate-scene.mjs --scene scene.json
-# Add --expected-language <language-code> when the brief has a language expectation.
+node scripts/validate-scene.mjs --scene scene.json --expected-language zh
 node scripts/open-editor.mjs --scene scene.json
 ```
 
-4. Inspect the actual local editor or rendered export. Check overflow, clipping, padding, contrast,
-   accidental overlap, style fidelity and real information relationships. Trace directed edges to
-   their intended source and target; counting arrows alone does not prove topology. Do not copy
-   sample content, page proportions or three-stage layouts from a style preview.
-5. Fix the source SVG locally, batch the observed fixes, reconvert and revalidate. Use scene JSON
-   edits only for Excalidraw-specific cleanup. Deliver the local URL and PNG/SVG export instructions
-   through the workflow in [SKILL.md](SKILL.md).
+Conversion diagnostics identify unsupported features. Fix the SVG and retry. Inspect the actual
+scene and final export for routing, text and edit behavior; schema checks alone are insufficient.

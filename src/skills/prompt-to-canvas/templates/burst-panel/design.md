@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Burst Panel
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A loud neobrutalist dashboard system — a saturated marigold-yellow canvas carved into big lavender panels and near-black ink cards, all bound by chunky black borders with squared-to-soft corners. Type is heavy and plain (no caps gimmickry), the structural signature is flat color-blocking plus role-swapped nested panels and oversized numeral cells, and color does the shouting while ink does the holding. Great for product/system maps, dashboards-as-diagrams, feature comparisons, and pricing/plan explainers that want energy without clutter.
 
@@ -29,10 +29,14 @@ stroke:
   radius: 18 # generously rounded rects/pills
 ---
 
-# Burst Panel — Feishu SVG Whiteboard Design System
+# Burst Panel — Editable Canvas Design System
 
 A high-energy neobrutalist dashboard look: marigold canvas, fat black borders, lavender and ink panels nested by role-swap, mint/orange accents for "live" states, and oversized numeral cells as the graphic punctuation. Everything is flat and editable.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.

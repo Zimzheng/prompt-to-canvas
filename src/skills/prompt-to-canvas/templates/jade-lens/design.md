@@ -1,7 +1,7 @@
 ---
 version: 1.0
 name: Jade Lens
-renderer: feishu-svg-whiteboard
+renderer: svg-to-excalidraw
 description: >
   A calm, harmonious system built on a warm putty canvas and large solid jade-emerald ellipses, where two ellipses overlapping produce a third deeper-green "lens" ellipse in the intersection rather than a transparency. Depth and structure come from flat color blocks, ellipse-on-ellipse overlap, and quiet generous whitespace — no shadows, no chrome, borders only when a divider is genuinely needed. Type is a heavy near-black display set sparingly beside the ellipses or in the margins. Best for serene system maps, concept overviews, two-part comparisons, and slow-paced explainers where the geometry carries the meaning and labels stay minimal.
 
@@ -11,7 +11,7 @@ colors:
   ink: "#1E2421" # ink / near-black structure & display text (warm charcoal); the occasional rule and any connector
   jade: "#2BA483" # accent-1 / primary emerald ellipse; use side by side with jade-mint so meeting shapes read as distinct masses
   jade-mint: "#2CAE8C" # accent-2 / second, slightly lighter-mint ellipse; pair with jade as the two primary masses
-  lens: "#08754C" # accent-3 / THE signature move — deep-green OVERLAP ellipse painted as its own solid shape in the intersection (fakes a multiply blend on a board that ignores opacity)
+  lens: "#08754C" # accent-3 / THE signature move — deep-green OVERLAP ellipse painted as its own solid shape in the intersection (creates a controlled solid overlap tint)
   lens-soft: "#0E5A3C" # accent-4 / deepest jade, reserved for big numerals and emphasis text in margins
   # Rule: 2–3 accents per scene (typically both jades + the lens). Harmonious, quiet, all-green family.
   #       Dark ink text on putty canvas; light putty (#F5F1EE) text only on saturated jade/lens fills (never dark-green text on a green ellipse — the low-contrast trap). Keep small labels on putty or in a light panel.
@@ -29,10 +29,14 @@ stroke:
   radius: 0 # rects are sharp by default; rounded info panels use rx 16–24. Never "organic".
 ---
 
-# Jade Lens — Feishu SVG Whiteboard Design System
+# Jade Lens — Editable Canvas Design System
 
 A serene system of large jade ellipses on warm putty, where two ellipses meeting produces a third deeper-green "lens" ellipse in the intersection instead of a transparent blend. Quiet, minimal, native-shape — the geometry does the talking.
 
 ## Rules
 
-This template is the **palette + mood** only. Every medium constraint (native shapes, opacity ignored, the text-color export caveat, no gradients/filters/shadows, reflow) and the build/verify workflow live in **[`../../RULES.md`](../../RULES.md)** — read it before building.
+This guide supplies visual treatment, not a required page layout. Preserve the content's topology.
+Current conversion capabilities and limitations are defined in **[../../RULES.md](../../RULES.md)**;
+that contract supersedes historical renderer/font/export notes in this guide. Curves and simple
+editable geometry are available when useful. Keep this guide's palette, contrast and depth choices
+unless a content-driven adaptation is explicitly identified.
