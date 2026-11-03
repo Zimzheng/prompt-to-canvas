@@ -2,99 +2,41 @@
 
 [简体中文](README.md) | [English](README.en.md)
 
-**Turn notes, project stories, and technical plans into Excalidraw canvases you can keep editing.**
+**Turn text into clear, polished Excalidraw canvases you can keep editing.**
 
-A skill package for AI coding agents such as Codex and Claude Code. The agent organizes your content, uses **35 visual references** or a coherent custom direction, composes a layout, and opens it in the bundled local editor. Edit text, shapes, and connectors, then export PNG or SVG.
+A skill for AI agents such as Codex and Claude Code. Provide content and a purpose; the agent interprets the relationships, designs the composition and visual direction, and opens the result in a bundled local editor.
 
-[Install](#install) · [Browse styles](src/skills/prompt-to-canvas/CATALOG.md) · [Read the workflow](src/skills/prompt-to-canvas/SKILL.md)
+[Get started](#install) · [Examples and source files](docs/EXAMPLES.md) · [Visual references](src/skills/prompt-to-canvas/CATALOG.md)
 
+## See the results
 
-## Actual outputs
+These conceptual examples are actual editor exports, not customer deployments. Their canvas text is Chinese. Click either image for context, SVG sources and editable scenes.
 
-These conceptual examples were generated with v1.2.0 without a specified style. Images are actual
-editor exports, not customer deployments. The canvas text is Chinese; click either preview for
-context, SVG sources and editable Excalidraw scenes.
+**Business process: responsibility lanes, decisions and revision loops**
 
-[![AI editorial workflow with responsibility lanes, decisions and revision loops](docs/examples/case-1-editorial-workflow.png)](docs/EXAMPLES.md#ai-内容发布协作--ai-editorial-workflow)
+[![AI editorial workflow](docs/examples/case-1-editorial-workflow.png)](docs/EXAMPLES.md)
 
-[![Research agents with a central coordinator, specialists and shared capabilities](docs/examples/case-2-agent-network.png)](docs/EXAMPLES.md#研究型-agent-协作网络--research-agent-collaboration)
+**System architecture: central coordination, specialists and shared capabilities**
 
-Explore [35 visual references](src/skills/prompt-to-canvas/CATALOG.md) or use a coherent custom direction.
-References guide visual treatment, not fixed layouts.
+[![Research agent collaboration network](docs/examples/case-2-agent-network.png)](docs/EXAMPLES.md)
 
-## What you can make
+## What it does
 
-| Your content | Canvas ideas |
-| --- | --- |
-| Project stories and product cases | Portfolio boards, reviews, results summaries |
-| System modules, processes, technical plans | Architecture diagrams, flowcharts, concept maps |
-| Milestones and release plans | Roadmaps and timelines |
-| Metrics and before/after changes | Metric boards and comparisons |
-
-- **Editable output**: SVG layouts become native Excalidraw text and shapes.
-- **Content-driven composition**: styles supply visual rules; the agent decides the narrative, grouping, hierarchy, and connections.
-- **Bundled local editor**: a prebuilt runtime is included, so ordinary installation needs no frontend dependency setup.
-- **Ready to share**: Chinese/English editor UI, browser-local autosave, and PNG/SVG export.
-
-## What changed in v1.2.0
-
-- **Autonomous selection:** no fixed default style or mandatory template question; brand and series constraints take priority.
-- **Flexible composition:** combine lanes, branches, joins, nested boundaries and feedback without fixed columns, node counts or aspect ratios.
-- **Linked editing:** groups, container labels and arrow endpoint bindings preserve editing relationships.
-- **Explicit conversion:** diamonds, sampled curves, inherited styles and dashes; unsupported visible features produce errors.
-
-The converter implements a defined SVG subset. Curves use editable sampled points and text bounds are estimates.
-There is no automatic layout, obstacle avoidance or built-in PDF export. Inspect real rendering for text and
-complex routing. See [capabilities and limits](src/skills/prompt-to-canvas/RULES.md).
-
-## Relationship to the reference skill
-
-Prompt to Canvas reuses and extends the visual system from [Zara Zhang's beautiful-feishu-whiteboard](https://github.com/zarazhangrui/beautiful-feishu-whiteboard). It retains the style library and SVG composition approach, adapting delivery to **local Excalidraw canvases**. The upstream project supplies the visual design foundation; this project extends conversion, validation, and the local editing experience.
-
-### What is reused
-
-| Reused contribution | Where it appears in this repository |
-| --- | --- |
-| **35 visual styles**: palettes, mood, formality, and design guidance | [Style catalogue](src/skills/prompt-to-canvas/CATALOG.md) and [35 style design files](src/skills/prompt-to-canvas/templates/) |
-| **Style preview assets** | [35 PNG previews](src/skills/prompt-to-canvas/assets/styles/), including the Soft Editorial example shown above |
-| **SVG drawing rules**: native shapes, editable text, connectors, and visual review | [RULES.md](src/skills/prompt-to-canvas/RULES.md) adapts the upstream design principles into the current Excalidraw conversion contract, including supported geometry, editing bindings and limitations |
-| **Interaction and design method**: understand the purpose, confirm the style, select from the catalogue, compose, inspect, and refine | Adapted to the local Excalidraw workflow in [SKILL.md](src/skills/prompt-to-canvas/SKILL.md) |
-
-The 35 styles and their preview assets are upstream contributions. “Innovation” here refers to implementation and workflow extensions this project adds on top of that foundation.
-
-### What this project adds
-
-| Extension or innovation | Implementation and purpose |
-| --- | --- |
-| **SVG → native Excalidraw scene conversion** | [svg-to-scene.mjs](src/skills/prompt-to-canvas/scripts/svg-to-scene.mjs) converts supported SVG shapes, text, and connectors into editable scene elements, handling rotation/scaling, arrows, and CJK/Latin text size estimates |
-| **Excalidraw scene validation** | [validate-scene.mjs](src/skills/prompt-to-canvas/scripts/validate-scene.mjs) checks scene type, required fields, text and connector structures, with optional language/script checks |
-| **Local editing and export experience** | The [React editor](src/editor/src/App.jsx) integrates Excalidraw with Chinese/English UI, browser autosave, and PNG/SVG export; a [prebuilt runtime](src/skills/prompt-to-canvas/assets/editor/) ships with the skill |
-| **Independent editor links for each generation** | [open-editor.mjs](src/skills/prompt-to-canvas/scripts/open-editor.mjs) starts a local HTTP server with an available port and a separate scene URL for each new canvas, reducing accidental reuse of another generation |
-| **Generation constraints for local canvases** | [Canvas rules](src/skills/prompt-to-canvas/rules/canvas-rules.md) add user-language handling, prevention of stale sample content, Excalidraw field requirements, and editable background rectangles |
-
-### Which skill to choose
-
-| Dimension | beautiful-feishu-whiteboard | Prompt to Canvas |
-| --- | --- | --- |
-| Delivery | Editable whiteboard inside a Feishu / Lark document | Editable scene in a local Excalidraw editor |
-| Prerequisites | Node.js 20+, a Feishu account, and authenticated Lark CLI | Node.js 20+, an agent that can run local commands, and a browser |
-| After SVG composition | Build, write, and verify through Feishu whiteboard tools | Convert to Scene JSON, validate, and open the local editor |
-| Best fit | Delivering and sharing whiteboards through Feishu documents | Editing locally and exporting PNG/SVG |
-
-The upstream project is MIT licensed. This repository preserves its [original license and author attribution](src/skills/prompt-to-canvas/LICENSE.beautiful-feishu-whiteboard); see [NOTICE.md](NOTICE.md) for full attribution and dependencies. Excalidraw provides the editing capabilities; this project contributes the conversion and integration workflow.
+- **Content-led composition:** create processes, architectures, timelines, comparisons and concept maps. Combine lanes, branches, nested boundaries, feedback and detail views without fixed columns, node counts or aspect ratios.
+- **Autonomous visual direction:** use 35 visual references or a coherent custom direction. When no style is specified, the agent chooses directly; brand, reference and series requirements can guide it.
+- **Editable output:** preserve native Excalidraw text and shapes, with groups, container labels and arrow endpoint bindings.
+- **Local delivery:** the bundled editor supports Chinese/English UI, browser autosave and PNG/SVG export. Ordinary use needs no frontend dependency installation.
 
 ## Install
 
-You need **Git, Node.js 20+**, and an agent environment that can read skill files and execute local commands. These commands use a macOS/Linux shell.
-
-Get the repository:
+Requires **Git, Node.js 20+**, and an agent that can read skill files and execute local commands. These commands use a macOS/Linux shell.
 
 ```bash
 git clone https://github.com/Zimzheng/prompt-to-canvas.git
 cd prompt-to-canvas
 ```
 
-Run one of the following, depending on your agent:
+Choose the installation location for your agent:
 
 **Codex**
 
@@ -112,85 +54,61 @@ cp -R src/skills/prompt-to-canvas ~/.claude/skills/
 sh ~/.claude/skills/prompt-to-canvas/scripts/preflight.sh
 ```
 
-A successful check prints `Prompt to Canvas preflight OK`. Start a new agent session and explicitly name `prompt-to-canvas`.
+A successful check prints `Prompt to Canvas preflight OK`. Start a new agent session and name `prompt-to-canvas`. Back up any locally modified skill files before updating.
 
-The repository also provides `bash scripts/deploy.sh`, targeting Codex by default; set `SKILLS_DIR` to choose another skill directory. The helper synchronizes files and deletes extra files inside the target skill directory, so back up local changes before updating. Follow the skill's local HTTP startup workflow to use the editor.
+## Use
 
-## First canvas
-
-Give the agent your content and purpose; style preferences are optional:
+Provide content and purpose; style is optional. For example:
 
 ```text
-Use prompt-to-canvas to turn this fictional project plan into an editable roadmap.
-Audience: product review. Style: clean and professional. Use English canvas text.
-
-Project: Team knowledge assistant
-Phase 1: Organize documents and build a search index.
-Phase 2: Add question answering with source citations.
-Phase 3: Collect feedback and improve answer quality.
-Highlight each phase's goal and deliverable.
+Use prompt-to-canvas to draw an AI editorial workflow.
+Include a requester, AI editor, human editor and publishing system.
+Show automatic checks, human approval, revision requests and publication records.
+Use English canvas text.
 ```
 
-This is a fictional example. Replace it with your notes, architecture description, or project review.
-
-Without a specified style, the agent chooses autonomously from the reading task, label load and relationship complexity. There is no fixed default style or mandatory template question. Use a catalogue reference or a coherent custom direction; brand and series continuity take priority. Compose topology before visual treatment, combining lanes, branches, joins, nested boundaries, feedback and detail views as useful. Previews do not prescribe layout, node count or aspect ratio. Request candidate previews or multiple variants explicitly when needed.
-
-The agent infers the purpose, composes the relationships, chooses a visual direction, builds SVG, converts and validates the scene, and provides a local editor link. It asks only when missing information materially affects correctness. Open it, edit the text and shapes, and use the **PNG / SVG** buttons to export.
+The agent designs the composition, selects a visual direction, generates and inspects the canvas, and provides a local editor link. It asks only when missing information materially affects correctness. Explicitly request visual options or multiple variants when useful.
 
 ```text
-Content and purpose → Information structure and style → SVG composition
-                    → Editable Excalidraw scene → Local editing → PNG / SVG
+Content and purpose → Relationships and composition → Visual direction → SVG
+                    → Editable scene → Local editing → PNG / SVG
 ```
 
-The skill relies on the agent for analysis and composition. It is not a standalone text-to-diagram service. Keep the local editor process running while using its link.
+Keep the editor process running to access its local link. Retain the generated SVG and scene JSON, and export the images you need; browser autosave is not a file backup.
 
-## Saving and privacy
+## Limits and privacy
 
-The editor runs through a local HTTP server and autosaves the current scene in browser `localStorage`. Do not rely on an old autosave after clearing browser data, switching browsers, or opening a new canvas link. Export files to retain your results.
+- The skill relies on an agent for analysis and composition; it is not a standalone diagram-generation service.
+- The converter implements a defined SVG subset. Curves use editable sampled points and text bounds are estimates. Inspect actual rendering for text and complex routing; unsupported visible features produce errors.
+- Automatic layout, obstacle avoidance, built-in PDF export and multiplayer collaboration are not integrated. See the [conversion contract](src/skills/prompt-to-canvas/RULES.md) for supported features.
+- The editor runs over local HTTP and autosaves in browser `localStorage`. Content sent to the agent remains subject to your model provider's and runtime's data policies.
 
-The local editor and the agent service are separate parts of the workflow. Content you send to the agent remains subject to your model provider's and runtime's data policies. Multiplayer collaboration is not integrated; PNG and SVG are the implemented export formats.
+## Develop and validate
 
-## Development and validation
-
-Rule/converter checks need Node on PATH, without frontend dependency installation:
+Rule and converter checks need Node on PATH, without frontend dependency installation:
 
 ```bash
 npm test
 npm run preflight
 ```
 
-The current suite has 20 regression checks. They verify conversion behavior, not visual quality or diversity across every generation.
-
-Ordinary installation uses the bundled editor. Install npm dependencies when changing the editor source:
+Install dependencies and rebuild the bundled runtime only when changing the editor:
 
 ```bash
 npm ci
 npm run dev
-```
-
-Build the editor and synchronize it into the distributable skill package:
-
-```bash
+# After editing, build and synchronize the skill runtime
 npm run build:skill
-npm run preflight
 ```
 
-Editor source lives in `src/editor/`; the distributable package lives in `src/skills/prompt-to-canvas/`. `src/static/` is a Git-ignored build directory; the distributable runtime is the skill's `assets/editor/` directory.
-
-Report problems through [Issues](https://github.com/Zimzheng/prompt-to-canvas/issues), or submit a Pull Request improving styles, rules, scripts, or the editor. After editor changes, rebuild and synchronize the runtime, then check generation, editing, and export.
+Editor source lives in `src/editor/`; the distributable skill lives in `src/skills/prompt-to-canvas/`. Tests cover conversion behavior and do not replace semantic or visual review. Contributions are welcome through [Issues](https://github.com/Zimzheng/prompt-to-canvas/issues) and Pull Requests.
 
 ## Documentation
 
-| Document | Contents |
-| --- | --- |
-| [Skill entry point](src/skills/prompt-to-canvas/SKILL.md) | Current prerequisites and generation/validation workflow |
-| [Style catalogue](src/skills/prompt-to-canvas/CATALOG.md) | Mood, formality, and palettes for 35 styles |
-| [Drawing rules](src/skills/prompt-to-canvas/RULES.md) | SVG composition constraints |
-| [Release guide](docs/RELEASE.md) | Release checks and package size policy |
-| [Security policy](SECURITY.md) | Reporting security issues |
+[Skill workflow](src/skills/prompt-to-canvas/SKILL.md) · [Visual references](src/skills/prompt-to-canvas/CATALOG.md) · [Conversion capabilities and limits](src/skills/prompt-to-canvas/RULES.md) · [Example sources](docs/EXAMPLES.md) · [Release guide](docs/RELEASE.md) · [Security policy](SECURITY.md)
 
-The `docs/` directory also retains product, technical, and API design documents. For current behavior, follow the skill entry point and code.
+## Sources and license
 
-## License and acknowledgements
+The visual style library and preview assets derive from [Zara Zhang's beautiful-feishu-whiteboard](https://github.com/zarazhangrui/beautiful-feishu-whiteboard). This project adapts that foundation to a local Excalidraw workflow, extending content-led composition, SVG conversion, editing relationships and scene validation. Excalidraw supplies the editing engine.
 
-[MIT licensed](LICENSE). The editor builds on Excalidraw, React, and Vite; the visual system draws inspiration from `beautiful-feishu-whiteboard`. See [NOTICE.md](NOTICE.md) for third-party attribution and license notes.
+[MIT licensed](LICENSE). The [upstream license](src/skills/prompt-to-canvas/LICENSE.beautiful-feishu-whiteboard) and attribution are preserved; see [NOTICE.md](NOTICE.md) for third-party sources and dependencies.
